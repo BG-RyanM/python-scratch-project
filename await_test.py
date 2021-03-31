@@ -1,7 +1,7 @@
 import random
 import asyncio
 
-# Test of asyncio gather() combined with a timeout feauture
+# Test of asyncio gather() combined with a timeout feature
 
 async def test_func(info):
     print(">", info)

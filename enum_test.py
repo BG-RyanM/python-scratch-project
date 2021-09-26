@@ -16,11 +16,14 @@ class PetOwner:
 
 
 pet_owner = PetOwner(PetOwner.Animal.CAT)
+# pet owner has CAT
 print(pet_owner.to_string())
 
+# Bird value is 3
 print("Bird value is", PetOwner.Animal["BIRD"].value)
 
 dumb_string = "dumb\n123\nxyz"
 dumb_parts = dumb_string.split("\n")
 if type(dumb_string) == str:
     print("dumb parts ",dumb_parts)
+# dumb parts  ['dumb', '123', 'xyz']

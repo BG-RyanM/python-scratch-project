@@ -4,7 +4,7 @@ def generate_string():
     i = 0
     while True:
         my_string = "string" + str(i)
-        i = i + 1
+        i += 1
         yield my_string
 
 

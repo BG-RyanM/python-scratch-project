@@ -50,6 +50,16 @@ def do_test2(future_tester):
     #yield future_tester.future.done()
     print("done!")
 
+@coroutine
+def inner_coroutine():
+    yield tornado_sleep(0.5)
+    raise Return(5)
+
+@coroutine
+def outer_coroutine():
+    result = yield inner_coroutine()
+    raise Return(result + 1)
+
 async def main():
     print("Test One")
     fut = do_test1()
@@ -60,5 +70,11 @@ async def main():
     asyncio.create_task(future_tester.do_task())
     fut = do_test2(future_tester)
     await fut
+
+    print("Test Three")
+    fut = outer_coroutine()
+    await fut
+    # should be 6
+    print("result:", fut.result())
 
 asyncio.run(main())

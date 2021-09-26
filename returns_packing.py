@@ -8,4 +8,5 @@ def return_stuff():
 
 
 result = return_stuff()
+# Result is (12, 'abc', [1, 2])
 print("Result is", result)

@@ -34,3 +34,18 @@ if None in fruit_set:
 
 none_str = None
 print(f"none_str is {none_str}")
+
+some_coords = [(3, 1), (2, 2), (1, 0)]
+c1 = (1, 0)
+if c1 in some_coords:
+    print("c1 in some_coords")
+c2 = (5, 7)
+if c2 not in some_coords:
+    print("c2 not in some_coords")
+
+outer_var = 1
+for x in range(10):
+    if x % 3 == 0:
+        outer_var = 2
+    elif x % 5 == 0:
+        outer_var = 3

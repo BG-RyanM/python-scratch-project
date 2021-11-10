@@ -51,7 +51,8 @@ def get_trendline(upper, start_x, end_x, min_dist):
         if coords[0] >= end_x:
             break
         next_coords = _get_steepest_target(coords[0], end_x)
-        pts_list.append(next_coords)
+        if next_coords[0] < end_x:
+            pts_list.append(next_coords)
         coords = next_coords
 
     if len(pts_list) <= 1:

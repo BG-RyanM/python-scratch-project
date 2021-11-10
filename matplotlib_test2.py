@@ -36,8 +36,12 @@ def make_plot(fig, idx):
     else:
         ax.plot(x, np.tan(x))
 
+    names = ["cos", "sin", "tan"]
+    fig.suptitle("Trig Function {}".format(names[idx]))
     name = "Plot #{}".format(idx + 1)
     ax.title.set_text(name)  # set title of graph
+    ax.set_xlabel("X Axis!")
+    ax.set_ylabel("Y Axis!")
 
     print("making buttons!")
     axprev = plt.axes([0.7, 0.0, 0.1, 0.075])

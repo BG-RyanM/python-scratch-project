@@ -1,0 +1,17 @@
+sim_settings:
+  # total cells in system
+  num_cells: 5
+  # period at which containers arrive in system
+  overall_arrival_period: 4
+  # how many containers can be waiting at a cell
+  max_containers_per_cell: 7
+  # time it takes for container to get from system entrance to a cell
+  cell_arrival_time: 4
+  # represents added time for each cell down the line
+  cell_distance_penalty: 3
+  # how long it takes to process a container
+  cell_processing_time: 20
+  # how often (x/100) a barcode scanner fails to read a container
+  barcode_failure_rate: 0
+  # how often (x/100) a container goes to a cell other than one it was routed to
+  misroute_rate: 0

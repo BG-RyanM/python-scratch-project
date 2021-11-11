@@ -12,6 +12,6 @@ sim_settings:
   # how long it takes to process a container
   cell_processing_time: 20
   # how often (x/100) a barcode scanner fails to read a container
-  barcode_failure_rate: 5
+  barcode_failure_rate: 10
   # how often (x/100) a container goes to a cell other than one it was routed to
-  misroute_rate: 2
+  misroute_rate: 10

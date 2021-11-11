@@ -1,6 +1,7 @@
 import random
 import asyncio
 from datetime import datetime, timedelta
+import yaml
 
 class Container(object):
     def __init__(self, id):
@@ -9,9 +10,9 @@ class Container(object):
 
 class Orchestrator(object):
 
-    MAX_CONTAINERS = 7
-    ARRIVAL_TIME = 5
-    PROCESS_TIME = 15
+    max_containers = 7
+    process_time = 15
+    barcode_failure_rate = 5
 
     def __init__(self, id: int):
         # Serve same functions as in RIS
@@ -26,10 +27,11 @@ class Orchestrator(object):
         self._lock = asyncio.Lock()
         self._arrival_task = None
         self._process_task = None
+        self._arrival_time = 5
 
     def get_score(self) -> int:
         total = len(self.expected_queue) + len(self.known_queue)
-        return total if total < Orchestrator.MAX_CONTAINERS else -1
+        return total if total < Orchestrator.max_containers else -1
 
     def get_queues_as_str(self) -> str:
         def _list_to_cs(lst):
@@ -43,26 +45,32 @@ class Orchestrator(object):
                   f"K=[{_list_to_cs([str(x.id) for x in self.known_queue])}]"
         return ret_str
 
-    async def add_container(self, container_id):
+    async def add_container(self, container: Container):
         async with self._lock:
-            container = Container(container_id)
             self._enroute_queue.append(container)
 
-    async def add_expected_container(self, container_id):
+    async def add_expected_container(self, container: Container):
         async with self._lock:
-            container = Container(container_id)
             self.expected_queue.append(container)
 
     async def make_tasks(self):
         self._arrival_task = asyncio.create_task(self._arrival_coro())
         self._process_task = asyncio.create_task(self._processing_coro())
 
+    @property
+    def arrival_time(self):
+        return self._arrival_time
+
+    @arrival_time.setter
+    def arrival_time(self, val):
+        self._arrival_time = val
+
     async def _arrival_coro(self):
         while True:
             if len(self._enroute_queue) > 0:
                 # At least one container is enroute; find out if it's there yet.
                 container = self._enroute_queue[0]
-                time_remaining = Orchestrator.ARRIVAL_TIME - (datetime.utcnow() - container.creation_time).total_seconds()
+                time_remaining = self._arrival_time - (datetime.utcnow() - container.creation_time).total_seconds()
                 if time_remaining > 0.0:
                     # We can sleep some more...
                     await asyncio.sleep(time_remaining)
@@ -83,7 +91,7 @@ class Orchestrator(object):
         while True:
             # If there a container at the pick station, process it
             if self._container_in_processing is not None:
-                await asyncio.sleep(Orchestrator.PROCESS_TIME)
+                await asyncio.sleep(Orchestrator.process_time)
                 self._container_in_processing = None
             if len(self._actual_queue) > 0:
                 #print(f"*** processing wants lock for {self.id}")
@@ -106,7 +114,7 @@ class Orchestrator(object):
     def _handle_pick_area_arrival(self, container: Container):
         # Take it off the known queue
         self._remove_from_queue(self.known_queue, container)
-        print(f"cell {self.id}: container {container.id} moves to pick area, queues are: {self.get_queues_as_str()}")
+        print(f"cell {self.id}: container {container.id} moves to processing area, queues are: {self.get_queues_as_str()}")
 
     def _remove_from_queue(self, queue, item: Container):
         try:
@@ -127,6 +135,27 @@ class Router(object):
 
     def __init__(self):
         self._index = 0
+        self._overall_arrival_period = 5
+        self._misroute_rate = 2
+
+
+    def load_params_from_yaml(self):
+        with open('orchestrator_sim.yaml', 'r') as file:
+            config = yaml.safe_load(file)
+        sim_settings = config["sim_settings"]
+        Orchestrator.max_containers = sim_settings["max_containers_per_cell"]
+        Orchestrator.process_time = sim_settings["cell_processing_time"]
+        Orchestrator.barcode_failure_rate = sim_settings["barcode_failure_rate"]
+
+        num_cells = sim_settings["num_cells"]
+        for i in range(num_cells):
+            orch = Orchestrator(i)
+            orchestrator_list.append(orch)
+            orch.arrival_time = sim_settings["cell_arrival_time"] + i * sim_settings["cell_distance_penalty"]
+
+        self._overall_arrival_period = sim_settings["overall_arrival_period"]
+        self._misroute_rate = sim_settings["misroute_rate"]
+
 
     async def run(self):
         while True:
@@ -137,9 +166,10 @@ class Router(object):
                 print(f"Router: no destination for {container_name}")
             else:
                 print(f"Router: routing container {container_name} to cell {orch.id}")
-                await orch.add_expected_container(container_name)
-                await orch.add_container(container_name)
-            await asyncio.sleep(5.0)
+                container = Container(container_name)
+                await orch.add_expected_container(container)
+                await orch.add_container(container)
+            await asyncio.sleep(self._overall_arrival_period)
 
     def choose_cell(self):
         best_orch = None
@@ -152,8 +182,10 @@ class Router(object):
                 best_score = score
         return best_orch
 
-orchestrator_list = [Orchestrator(i) for i in range(5)]
+
+orchestrator_list = []
 router = Router()
+router.load_params_from_yaml()
 
 
 async def run_all():

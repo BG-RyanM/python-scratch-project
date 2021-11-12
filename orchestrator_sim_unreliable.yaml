@@ -1,3 +1,5 @@
+# For running the simulation with "unreliable" parameters. That is, barcode scanners can fail,
+# containers can be routed somewhere other than where expected
 sim_settings:
   # total cells in system
   num_cells: 5
@@ -14,4 +16,4 @@ sim_settings:
   # how often (x/100) a barcode scanner fails to read a container
   barcode_failure_rate: 10
   # how often (x/100) a container goes to a cell other than one it was routed to
-  misroute_rate: 10
+  misroute_rate: 1

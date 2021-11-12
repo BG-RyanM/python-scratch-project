@@ -9,6 +9,7 @@ async def custom_sleep(orig_time: float):
     await asyncio.sleep(orig_time / float(speed_up_rate))
 
 def list_to_cs(lst):
+    # Converts a list of strings to a single string with commas between items
     comma = False
     result = ""
     for i in lst:
@@ -18,6 +19,9 @@ def list_to_cs(lst):
 
 
 class Container(object):
+    """
+    Represents a simulated container
+    """
 
     container_list = []
 
@@ -29,6 +33,9 @@ class Container(object):
 
     @staticmethod
     def print_outcome():
+        """
+        Prints the overall results with all the containers processed
+        """
         kicked_containers = [container for container in Container.container_list if container.was_kicked]
         kicked_as_str = list_to_cs([str(container.id) for container in kicked_containers])
         success_count = len(Container.container_list) - len(kicked_containers)
@@ -36,6 +43,9 @@ class Container(object):
         print(f"Kicked containers were: {kicked_as_str}")
 
 class Orchestrator(object):
+    """
+    Represents a simulated Cell/Station
+    """
 
     max_containers = 7
     process_time = 15

@@ -1,3 +1,5 @@
+# For running the simulation with "clean" parameters. That is, barcode scanners work 100% of the time,
+# containers are always routed where expected.
 sim_settings:
   # total cells in system
   num_cells: 5

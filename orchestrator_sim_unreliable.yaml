@@ -16,4 +16,4 @@ sim_settings:
   # how often (x/100) a barcode scanner fails to read a container
   barcode_failure_rate: 10
   # how often (x/100) a container goes to a cell other than one it was routed to
-  misroute_rate: 10
+  misroute_rate: 0

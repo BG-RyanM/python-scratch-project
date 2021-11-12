@@ -26,7 +26,10 @@ class Container(object):
     container_list = []
 
     def __init__(self, id):
+        # actual ID of container
         self.id = id
+        # what barcode scanner and or queue analysis thinks the container is
+        self.reported_id = None
         self.creation_time = datetime.utcnow()
         self.was_kicked = False
         self.container_list.append(self)
@@ -58,6 +61,7 @@ class Cell(object):
         # Serve same functions as in RIS
         self.expected_queue = []
         self.known_queue = []
+        self.super_queue = []
         # The containers that are REALLY enroute to this cell (the queues above may be unreliable)
         self._enroute_queue = []
         # The containers that are REALLY in line for processing
@@ -124,6 +128,7 @@ class Cell(object):
         """
         async with self._lock:
             self.expected_queue.append(container)
+            self.super_queue.append(container)
 
     @staticmethod
     def remove_container_from_all_cells_except(container: Container, exclude_cell):
@@ -136,6 +141,9 @@ class Cell(object):
             removed = Cell._remove_from_queue(cell.known_queue, container, surgical=True)
             if removed:
                 print(f"cell {cell.id}: container {container.id} pulled from Known queue, is at cell {exclude_cell.id}")
+            removed = Cell._remove_from_queue(cell.super_queue, container, surgical=True)
+            if removed:
+                print(f"cell {cell.id}: container {container.id} pulled from Super queue, is at cell {exclude_cell.id}")
 
     async def make_tasks(self):
         """
@@ -195,12 +203,15 @@ class Cell(object):
         """
         Allows the entrance barcode scanner an opportunity to read the barcode of the arrived container,
         which it might not do successfully. If a success, bookkeeping with the queues will happen.
+
+        Note: it would be cheating for this function to report a container's real ID to the user
         :param container: the container
         """
         if random.randrange(100) < Cell.barcode_failure_rate:
             # Barcode wasn't read, so we can't do any bookkeeping
             return
         # If we get here, barcode scan was a success.
+        container.reported_id = container.id
         # Take container out of other cells' queues
         Cell.remove_container_from_all_cells_except(container, self)
         # Take container off the expected queue
@@ -208,31 +219,53 @@ class Cell(object):
         # Add to known queue
         self.known_queue.append(container)
         if was_in_queue:
-            print(f"cell {self.id}: container {container.id} arrival detected, queues are: {self.get_queues_as_str()}")
+            print(f"cell {self.id}: container {container.reported_id} arrival detected, queues are: {self.get_queues_as_str()}")
         else:
-            print(f"cell {self.id}: WARNING, unexpected container {container.id} arrival "
+            # TODO: we need to update super queue
+            print(f"cell {self.id}: WARNING, unexpected container {container.reported_id} arrival "
                   f"detected, queues are: {self.get_queues_as_str()}")
 
-    def _handle_pick_area_arrival(self, container: Container) -> bool:
+    def _handle_pick_area_arrival(self, actual_container: Container) -> bool:
         """
         Allows the cell barcode scanner an opportunity to read the barcode of the container passing into pick area,
         which it might not do successfully. If a success, bookkeeping with the queues will happen.
-        :param container: the container
+
+        Note: it would be cheating for this function to report a container's real ID to the user
+        :param actual_container: the container that actually arrives, whether we get barcode or not
         :return: True if barcode read successfully
         """
+        bad_barcode_read = False
+        known_container = actual_container
         if random.randrange(100) < Cell.barcode_failure_rate:
-            # Barcode wasn't read
-            print(f"cell {self.id}: WARNING, container {container.id} had no barcode, kicked")
-            container.was_kicked = True
-            return False
+            bad_barcode_read = True
+            known_container = None
+
+        # TODO: If we do get a barcode read and it's not in super queue, it needs to be there
+        if bad_barcode_read:
+            # We couldn't read the barcode, but maybe we can use the Super queue
+            if len(self.super_queue) > 0 and self.super_queue[0] in self.known_queue:
+                known_container = self.super_queue[0]
+                if known_container is not actual_container:
+                    print(f"cell {self.id}: *** ERROR ***, container {known_container.id} is not {actual_container.id}")
+            else:
+                print(f"cell {self.id}: WARNING, container had no barcode, kicked")
+                actual_container.was_kicked = True
+                return False
+
+        actual_container.reported_id = known_container.id
+
         # If we get here, barcode scan was a success.
         # Take container out of other cells' queues
-        Cell.remove_container_from_all_cells_except(container, self)
-        # Take container off the known queue
-        was_in_queue = self._remove_from_queue(self.known_queue, container)
+        Cell.remove_container_from_all_cells_except(known_container, self)
+        # Take container off the Known queue
+        was_in_queue = self._remove_from_queue(self.known_queue, known_container)
         if not was_in_queue:
-            print(f"cell {self.id}: WARNING, container {container.id} not in Known queue.")
-        print(f"cell {self.id}: container {container.id} moves to processing area, "
+            print(f"cell {self.id}: WARNING, container {known_container.reported_id} not in Known queue.")
+        # Take container off the Super queue
+        was_in_queue = self._remove_from_queue(self.super_queue, known_container)
+        if not was_in_queue:
+            print(f"cell {self.id}: WARNING, container {known_container.reported_id} not in Super queue.")
+        print(f"cell {self.id}: container {known_container.reported_id} moves to processing area, "
               f"queues are: {self.get_queues_as_str()}")
         return True
 

@@ -42,8 +42,13 @@ class Container(object):
         kicked_containers = [container for container in Container.container_list if container.was_kicked]
         kicked_as_str = list_to_cs([str(container.id) for container in kicked_containers])
         success_count = len(Container.container_list) - len(kicked_containers)
+        mislabeled_containers = [container for container in Container.container_list
+                                 if (container.id != container.reported_id and container.reported_id is not None)]
+        mislabeled_str = list_to_cs([f"{container.id} read as {container.reported_id}" for container in mislabeled_containers])
         print(f"Successfully processed {success_count} out of {len(Container.container_list)} containers.")
         print(f"Kicked containers were: {kicked_as_str}")
+        if len(mislabeled_containers) > 0:
+            print(f"*** ERROR ***: mislabeled containers were: {mislabeled_str}")
 
 class Cell(object):
     """
@@ -109,7 +114,7 @@ class Cell(object):
         """
         :return: Contents of queues as readable string
         """
-        ret_str = f"E=[{list_to_cs([str(x.id) for x in self.expected_queue])}] " + \
+        ret_str = f"S=[{list_to_cs([str(x.id) for x in self.super_queue])}] " + \
                   f"K=[{list_to_cs([str(x.id) for x in self.known_queue])}]"
         return ret_str
 
@@ -221,9 +226,9 @@ class Cell(object):
         if was_in_queue:
             print(f"cell {self.id}: container {container.reported_id} arrival detected, queues are: {self.get_queues_as_str()}")
         else:
-            # TODO: we need to update super queue
             print(f"cell {self.id}: WARNING, unexpected container {container.reported_id} arrival "
                   f"detected, queues are: {self.get_queues_as_str()}")
+            self._add_to_super_queue(container)
 
     def _handle_pick_area_arrival(self, actual_container: Container) -> bool:
         """
@@ -240,7 +245,6 @@ class Cell(object):
             bad_barcode_read = True
             known_container = None
 
-        # TODO: If we do get a barcode read and it's not in super queue, it needs to be there
         if bad_barcode_read:
             # We couldn't read the barcode, but maybe we can use the Super queue
             if len(self.super_queue) > 0 and self.super_queue[0] in self.known_queue:
@@ -284,6 +288,18 @@ class Cell(object):
             for i in range(index+1):
                 queue.pop(0)
         return True
+
+    def _add_to_super_queue(self, container: Container):
+        # It should go in the queue ahead of later containers
+        for i, entry in enumerate(self.super_queue):
+            delta_t = (entry.creation_time - container.creation_time).total_seconds()
+            if delta_t > 0:
+                # This container in the queue was created after the one we want to insert,
+                # so insert here.
+                self.super_queue.insert(i, container)
+                return
+        self.super_queue.append(container)
+
 
 
 class Orchestrator(object):

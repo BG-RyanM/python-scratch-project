@@ -42,7 +42,7 @@ class Container(object):
         print(f"Successfully processed {success_count} out of {len(Container.container_list)} containers.")
         print(f"Kicked containers were: {kicked_as_str}")
 
-class Orchestrator(object):
+class Cell(object):
     """
     Represents a simulated Cell/Station
     """
@@ -51,7 +51,7 @@ class Orchestrator(object):
     process_time = 15
     barcode_failure_rate = 5
 
-    orchestrator_list = []
+    cell_list = []
     last_container_routed = False
 
     def __init__(self, id: int):
@@ -71,46 +71,72 @@ class Orchestrator(object):
 
     @staticmethod
     async def run():
-        for orch in Orchestrator.orchestrator_list:
-            await orch.make_tasks()
+        for cell in Cell.cell_list:
+            await cell.make_tasks()
         while True:
-            if Orchestrator.all_done():
+            if Cell.all_done():
                 break
             await custom_sleep(0.1)
 
     def get_score(self) -> int:
+        """
+        :return: score used by routing heuristic
+        """
         total = len(self.expected_queue) + len(self.known_queue)
-        return total if total < Orchestrator.max_containers else -1
+        return total if total < Cell.max_containers else -1
 
     @staticmethod
     def all_done():
-        for orch in Orchestrator.orchestrator_list:
-            if not orch.is_done():
+        """
+        :return: True if all cells are finished with their work
+        """
+        for cell in Cell.cell_list:
+            if not cell.is_done():
                 return False
         return True
 
     def is_done(self) -> bool:
-        return Orchestrator.last_container_routed and len(self._enroute_queue) == 0 and len(self._actual_queue) == 0
+        """
+        :return: True if cell has finished all its processing
+        """
+        return Cell.last_container_routed and len(self._enroute_queue) == 0 and len(self._actual_queue) == 0
 
     def get_queues_as_str(self) -> str:
+        """
+        :return: Contents of queues as readable string
+        """
         ret_str = f"E=[{list_to_cs([str(x.id) for x in self.expected_queue])}] " + \
                   f"K=[{list_to_cs([str(x.id) for x in self.known_queue])}]"
         return ret_str
 
     async def add_container(self, container: Container):
+        """
+        Adds a container to the *ACTUAL* list of forthcoming arrivals, i.e. it will reliably get there
+        :param container: the container
+        """
         async with self._lock:
             self._enroute_queue.append(container)
 
     async def add_expected_container(self, container: Container):
+        """
+        Adds a container to the Expected queue for this cell
+        :param container: the container
+        """
         async with self._lock:
             self.expected_queue.append(container)
 
     async def make_tasks(self):
+        """
+        Fires up the two coroutines that will indefinitely handle container arrivals and container processing.
+        """
         self._arrival_task = asyncio.create_task(self._arrival_coro())
         self._process_task = asyncio.create_task(self._processing_coro())
 
     @property
     def arrival_time(self):
+        """
+        :return: how long it takes a container to arrive at this cell
+        """
         return self._arrival_time
 
     @arrival_time.setter
@@ -118,6 +144,7 @@ class Orchestrator(object):
         self._arrival_time = val
 
     async def _arrival_coro(self):
+        # Runs continuously, handling arriving containers
         while True:
             if len(self._enroute_queue) > 0:
                 # At least one container is enroute; find out if it's there yet.
@@ -137,15 +164,14 @@ class Orchestrator(object):
                 await custom_sleep(0.1)
 
     async def _processing_coro(self):
+        # Runs continuously, handling the processing of containers in pick area
         while True:
             # If there a container at the pick station, process it
             if self._container_in_processing is not None:
-                await custom_sleep(Orchestrator.process_time)
+                await custom_sleep(Cell.process_time)
                 self._container_in_processing = None
             if len(self._actual_queue) > 0:
-                #print(f"*** processing wants lock for {self.id}")
                 async with self._lock:
-                    #print(f"*** processing got lock for {self.id}")
                     next_container = self._actual_queue.pop(0)
                     got_barcode = self._handle_pick_area_arrival(next_container)
                     self._container_in_processing = next_container if got_barcode else None
@@ -154,7 +180,12 @@ class Orchestrator(object):
                 await custom_sleep(0.1)
 
     def _handle_entrance_arrival(self, container: Container):
-        if random.randrange(100) < Orchestrator.barcode_failure_rate:
+        """
+        Allows the entrance barcode scanner an opportunity to read the barcode of the arrived container,
+        which it might not do successfully. If a success, bookkeeping with the queues will happen.
+        :param container: the container
+        """
+        if random.randrange(100) < Cell.barcode_failure_rate:
             # Barcode wasn't read, so we can't do any bookkeeping
             return
         # Take container off the expected queue
@@ -168,8 +199,13 @@ class Orchestrator(object):
                   f"detected, queues are: {self.get_queues_as_str()}")
 
     def _handle_pick_area_arrival(self, container: Container) -> bool:
-        # Returns true if barcode was read successfully
-        if random.randrange(100) < Orchestrator.barcode_failure_rate:
+        """
+        Allows the cell barcode scanner an opportunity to read the barcode of the container passing into pick area,
+        which it might not do successfully. If a success, bookkeeping with the queues will happen.
+        :param container: the container
+        :return: True if barcode read successfully
+        """
+        if random.randrange(100) < Cell.barcode_failure_rate:
             # Barcode wasn't read
             print(f"cell {self.id}: WARNING, container {container.id} had no barcode, kicked")
             container.was_kicked = True
@@ -194,7 +230,10 @@ class Orchestrator(object):
         return True
 
 
-class Router(object):
+class Orchestrator(object):
+    """
+    Represents the system orchestrator, which routes containers to cells
+    """
 
     def __init__(self):
         self.total_containers = 100
@@ -207,71 +246,82 @@ class Router(object):
         with open(filename, 'r') as file:
             config = yaml.safe_load(file)
         sim_settings = config["sim_settings"]
-        Orchestrator.max_containers = sim_settings["max_containers_per_cell"]
-        Orchestrator.process_time = sim_settings["cell_processing_time"]
-        Orchestrator.barcode_failure_rate = sim_settings["barcode_failure_rate"]
+        Cell.max_containers = sim_settings["max_containers_per_cell"]
+        Cell.process_time = sim_settings["cell_processing_time"]
+        Cell.barcode_failure_rate = sim_settings["barcode_failure_rate"]
 
         num_cells = sim_settings["num_cells"]
         for i in range(num_cells):
-            orch = Orchestrator(i)
-            Orchestrator.orchestrator_list.append(orch)
-            orch.arrival_time = sim_settings["cell_arrival_time"] + i * sim_settings["cell_distance_penalty"]
+            cell = Cell(i)
+            Cell.cell_list.append(cell)
+            cell.arrival_time = sim_settings["cell_arrival_time"] + i * sim_settings["cell_distance_penalty"]
 
         self._overall_arrival_period = sim_settings["overall_arrival_period"]
         self._misroute_rate = sim_settings["misroute_rate"]
 
 
     async def run(self):
+        """
+        This coroutine contains the main loop that drives the Orchestrator
+        """
         for n in range(self.total_containers):
             container_name = "BG_{}".format(self._index)
             self._index += 1
-            orch = self.choose_cell()
+            cell = self.choose_cell()
             container = Container(container_name)
-            if orch is None:
+            if cell is None:
                 print(f"Router: no destination for {container_name}")
                 container.was_kicked = True
             else:
-                print(f"Router: routing container {container_name} to cell {orch.id}")
-                await orch.add_expected_container(container)
+                print(f"Router: routing container {container_name} to cell {cell.id}")
+                await cell.add_expected_container(container)
                 # Should there be a misroute?
                 if random.randrange(100) < self._misroute_rate:
                     # Yes
-                    wrong_cell = self.choose_random_cell(orch)
+                    wrong_cell = self.choose_random_cell(cell)
                     await wrong_cell.add_container(container)
                 else:
                     # No, container goes where expected
-                    await orch.add_container(container)
+                    await cell.add_container(container)
             await custom_sleep(self._overall_arrival_period)
         print(f"Router: finished with all containers")
-        Orchestrator.last_container_routed = True
+        Cell.last_container_routed = True
 
     def choose_cell(self):
-        best_orch = None
+        """
+        Choose cell most suitable for routing a container to
+        :return: Cell object or None
+        """
+        best_cell = None
         best_score = 100000
-        for orch in Orchestrator.orchestrator_list:
-            score = orch.get_score()
+        for cell in Cell.cell_list:
+            score = cell.get_score()
             #print(f"*** score for cell {orch.id} is {score}")
             if score >= 0 and score < best_score:
-                best_orch = orch
+                best_cell = cell
                 best_score = score
-        return best_orch
+        return best_cell
 
-    def choose_random_cell(self, orch_to_skip: Orchestrator = None):
-        options = [orch for orch in Orchestrator.orchestrator_list if orch is not orch_to_skip]
+    def choose_random_cell(self, cell_to_skip: Cell = None):
+        """
+        Choose a random cell, excluding the cell_to_skip as an option.
+        :return: the cell
+        """
+        options = [cell for cell in Cell.cell_list if cell is not cell_to_skip]
         return options[random.randrange(len(options))]
 
-router = Router()
+orchestrator = Orchestrator()
 speed_up_rate = 1
 
 async def run_all():
-    tasks = [asyncio.create_task(router.run()), asyncio.create_task(Orchestrator.run())]
+    tasks = [asyncio.create_task(orchestrator.run()), asyncio.create_task(Cell.run())]
     await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
     Container.print_outcome()
 
 if __name__ == "__main__":
     parser = ArgumentParser(
         add_help=True,
-        description="Simulation of Orchestrator and client routing systems",
+        description="Simulation of Cell and client routing systems",
     )
 
     parser.add_argument(
@@ -296,8 +346,8 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    router.load_params_from_yaml(args.config)
-    router.total_containers = args.containers
+    orchestrator.load_params_from_yaml(args.config)
+    orchestrator.total_containers = args.containers
     speed_up_rate = args.speed
 
     asyncio.run(run_all())

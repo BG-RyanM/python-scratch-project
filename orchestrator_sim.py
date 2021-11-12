@@ -125,6 +125,18 @@ class Cell(object):
         async with self._lock:
             self.expected_queue.append(container)
 
+    @staticmethod
+    def remove_container_from_all_cells_except(container: Container, exclude_cell):
+        for cell in Cell.cell_list:
+            if cell is exclude_cell:
+                continue
+            removed = Cell._remove_from_queue(cell.expected_queue, container, surgical=True)
+            if removed:
+                print(f"cell {cell.id}: container {container.id} pulled from Expected queue, is at cell {exclude_cell.id}")
+            removed = Cell._remove_from_queue(cell.known_queue, container, surgical=True)
+            if removed:
+                print(f"cell {cell.id}: container {container.id} pulled from Known queue, is at cell {exclude_cell.id}")
+
     async def make_tasks(self):
         """
         Fires up the two coroutines that will indefinitely handle container arrivals and container processing.
@@ -188,6 +200,9 @@ class Cell(object):
         if random.randrange(100) < Cell.barcode_failure_rate:
             # Barcode wasn't read, so we can't do any bookkeeping
             return
+        # If we get here, barcode scan was a success.
+        # Take container out of other cells' queues
+        Cell.remove_container_from_all_cells_except(container, self)
         # Take container off the expected queue
         was_in_queue = self._remove_from_queue(self.expected_queue, container)
         # Add to known queue
@@ -210,6 +225,9 @@ class Cell(object):
             print(f"cell {self.id}: WARNING, container {container.id} had no barcode, kicked")
             container.was_kicked = True
             return False
+        # If we get here, barcode scan was a success.
+        # Take container out of other cells' queues
+        Cell.remove_container_from_all_cells_except(container, self)
         # Take container off the known queue
         was_in_queue = self._remove_from_queue(self.known_queue, container)
         if not was_in_queue:
@@ -218,15 +236,20 @@ class Cell(object):
               f"queues are: {self.get_queues_as_str()}")
         return True
 
-    def _remove_from_queue(self, queue, item: Container) -> bool:
+    @staticmethod
+    def _remove_from_queue(queue, item: Container, surgical: bool = False) -> bool:
         # Returns True if successfully removed
         try:
             index = queue.index(item)
         except ValueError:
             return False
-        # Want to also remove everything in queue ahead of item
-        for i in range(index+1):
-            queue.pop(0)
+        if surgical:
+            # Non-aggressive, so only remove the one item
+            queue.pop(index)
+        else:
+            # Want to also remove everything in queue ahead of item
+            for i in range(index+1):
+                queue.pop(0)
         return True
 
 

@@ -15,5 +15,23 @@ def make_comma_separated_list(the_list):
 
 print(make_comma_separated_list(["apple", "banana", "grape"]))
 print(make_comma_separated_list(["hat"]))
-print("last", make_comma_separated_list([]))
+# Error:
+# print("last", make_comma_separated_list([]))
 
+# We want the first item in little list that's also in big list
+big_list = ["a", "b", "c", "d", "e", "f", "g"]
+little_list = ["0", "d", "f", "x", "y"]
+best_match = next(
+    filter(
+        lambda _id: _id in big_list,
+        little_list
+    ),
+    big_list[0]
+)
+print(f"Best match is {best_match}")
+
+array_of_tups = [('c', 3), ('d', 4), ('a', 1), ('b', 2), ('c', 7)]
+as_dict = {tup[0]:tup[1] for tup in array_of_tups}
+print(f"value for a is {as_dict['a']}")
+# Notice special deal with c
+print(f"value for c is {as_dict['c']}")

@@ -38,6 +38,10 @@ def calculate_mass_and_variance(weight_list):
     return mean, variance
 
 
+total_items = 0
 for b in boxes:
     mean, variance = calculate_mass_and_variance(b["weights"])
     print(f"product {b['product']} has mass {mean}, variance {variance}, goes in box {b['barcode']}")
+    print(f"num items: {len(b['weights'])}")
+    total_items += len(b['weights'])
+print(f"Total items: {total_items}")

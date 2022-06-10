@@ -1,6 +1,6 @@
 import attr
-from datetime import datetime
-from typing import Dict, Any, Optional, List
+from datetime_test import datetime
+from typing import Dict, Any, Optional, List, Union
 import functools
 
 
@@ -12,13 +12,14 @@ class TestHeld(object):
 @attr.s
 class TestHolder(object):
     name = attr.ib(type=str, validator=attr.validators.instance_of(str))
+    value = attr.ib(type=bytes, default=None, validator=attr.validators.instance_of((bytes, type(None))))
     some_list = attr.ib(type=List[TestHeld], default=[])
     some_dict = attr.ib(type={}, default={})
     tricky_dict = attr.ib(type=Dict[str, TestHeld], default={})
 
     @classmethod
-    def create(cls, name):
-        ret_obj = cls(name=name)
+    def create(cls, name, value=None):
+        ret_obj = cls(name=name, value=value)
         return ret_obj
 
     def __attrs_post_init__(self):
@@ -41,3 +42,7 @@ class TestHolder(object):
 test_holder = TestHolder.create("abc")
 #test_holder.populate()
 test_holder.print_info()
+
+holder_bytes = TestHolder.create("bytes", value=b"hi")
+# Causes error
+# holder_str = TestHolder.create("bytes", value="blah")

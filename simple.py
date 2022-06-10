@@ -49,3 +49,27 @@ for x in range(10):
         outer_var = 2
     elif x % 5 == 0:
         outer_var = 3
+
+dumb_num = 5.775862068965505e-06
+print("dumb num is", dumb_num)
+
+none_val = None
+none_as_str = str(none_val)
+print(f"none_as_str is [{none_as_str}]")
+
+bytes_val = b"thing"
+as_str = str(bytes_val)
+really_as_str = bytes_val.decode("utf-8")
+print(f"bytes value as string is '{as_str}', really as string is '{really_as_str}'")
+
+str_val = "BEDF001"
+as_bytes = bytes(str_val, "utf-8")
+print(f"string to bytes is {as_bytes}")
+# This doesn't work
+#as_bytes_again = bytes(as_bytes, "utf_8")
+#print(f"bytes to bytes is {as_bytes}")
+
+var_a = "cat"
+var_b = "dog"
+var_a, var_b = var_b, var_a
+print(f"A and B post-swap are {var_a}, {var_b}")

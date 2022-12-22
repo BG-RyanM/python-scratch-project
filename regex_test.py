@@ -1,6 +1,7 @@
 import re
 from typing import List
 
+
 def list_to_cs_str(the_list: List):
     outstr = None
     for item in the_list:
@@ -12,6 +13,7 @@ def list_to_cs_str(the_list: List):
         outstr = "Empty list"
     return outstr
 
+
 def match_test(pattern: str, test_str: str):
     result = re.match(pattern, test_str)
     if result:
@@ -19,12 +21,14 @@ def match_test(pattern: str, test_str: str):
     else:
         print(f"couldn't match '{test_str}' to '{pattern}'")
 
+
 def findall_test(pattern: str, test_str: str):
     result = re.findall(pattern, test_str)
     if result:
         print(f"successfully matched '{test_str} to {pattern}, result is {result}")
     else:
         print(f"couldn't match {test_str} to {pattern}")
+
 
 # Given a string x, analysis generally starts with the left-most character of x
 # and moves left to right, trying to match against the pattern. The pattern must
@@ -122,20 +126,35 @@ match_test("(\s)*$", "BG03081  ")  # no
 
 print("\n==================================")
 print("| find_all() test")
-findall_test('R: ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?', 'R:71055:23.18.48.165,53453R:70293:23.18.48.165,53453')
-findall_test(r'abc(def|xyz)', "abcxyz")
+findall_test(
+    "R: ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?[0-9] ?",
+    "R:71055:23.18.48.165,53453R:70293:23.18.48.165,53453",
+)
+findall_test(r"abc(def|xyz)", "abcxyz")
 # Note special sequence '(?:' -- tells findall() that () are for grouping only
-findall_test(r'abc(?:def|xyz)', "abcxyz")
-findall_test(r'abc(?:def|xyz)', "abcxyz abcdef abc789")
-findall_test(r'(?:BG)[0-9]{5,5}', "BG03081")
-findall_test(r'(?:BG)[0-9]{5,5}', "BG03081BG03082")
+findall_test(r"abc(?:def|xyz)", "abcxyz")
+findall_test(r"abc(?:def|xyz)", "abcxyz abcdef abc789")
+findall_test(r"(?:BG)[0-9]{5,5}", "BG03081")
+findall_test(r"(?:BG)[0-9]{5,5}", "BG03081BG03082")
 
 print("\n==================================")
 print("Scratch")
 
-sample_barcodes = ["BG03081", "BG03081:somecrap,1234", "BG03088BG03089", "^%$^TGJRGROGJ",
-                   "R:12345", "R: 12345", "R:12345 ", "BG03082", "BG03083",
-                   "xR:12345", "R:R:12345", "R::R:12345", "R:12345xyzR:67890"]
+sample_barcodes = [
+    "BG03081",
+    "BG03081:somecrap,1234",
+    "BG03088BG03089",
+    "^%$^TGJRGROGJ",
+    "R:12345",
+    "R: 12345",
+    "R:12345 ",
+    "BG03082",
+    "BG03083",
+    "xR:12345",
+    "R:R:12345",
+    "R::R:12345",
+    "R:12345xyzR:67890",
+]
 
 
 def extract_matches(string, pattern):
@@ -145,15 +164,18 @@ def extract_matches(string, pattern):
         result = re.search(pattern, _string)
         if result:
             ret_strings.append(result.group())
-            _string = _string[result.span()[1]:]
+            _string = _string[result.span()[1] :]
         else:
             break
     return ret_strings
 
+
 for bc in sample_barcodes:
     # "(BG)[0-9]{5,5}"
-    patterns = ["(R:)( )?[0-9]( )?[0-9]( )?[0-9]( )?[0-9]( )?[0-9]( )?",
-                "(BG03081)|(BG03082)|(BG03084)|(BG03085)"]
+    patterns = [
+        "(R:)( )?[0-9]( )?[0-9]( )?[0-9]( )?[0-9]( )?[0-9]( )?",
+        "(BG03081)|(BG03082)|(BG03084)|(BG03085)",
+    ]
     success = False
     for pattern in patterns:
         strings = extract_matches(bc, pattern)

@@ -14,7 +14,7 @@ def create_word_list():
     Builds a list of allowable words by reading in a text file.
     """
     global word_list, alphabet
-    with open('FiveLetterWords.txt') as f:
+    with open("FiveLetterWords.txt") as f:
         lines = f.readlines()
 
     alphabet = [chr(i) for i in range(ord("a"), ord("z") + 1)]
@@ -37,6 +37,7 @@ def create_word_list():
 
     word_list.sort()
 
+
 def determine_word_scores():
     # A list of dictionaries of {letter: count}, one for each positions
     letter_counts = []
@@ -47,7 +48,7 @@ def determine_word_scores():
         for a in alphabet:
             the_dict[a] = 0
         letter_counts.append(the_dict)
-        best_letters.append((0, 'a'))
+        best_letters.append((0, "a"))
 
     for word in word_list:
         for i, c in enumerate(word):
@@ -62,9 +63,9 @@ def determine_word_scores():
             if count > tup[0]:
                 best_letters[i] = (count, c)
         word_scores[word] = score
-        #print(f"score of word {word} is {score}")
-    #print("total words are", len(word_list))
-    #print("best letters are", best_letters)
+        # print(f"score of word {word} is {score}")
+    # print("total words are", len(word_list))
+    # print("best letters are", best_letters)
 
 
 class GameMaster:
@@ -90,7 +91,9 @@ class GameMaster:
         """
         word_list_size = len(word_list)
         self.guesses_left = self.total_guesses = 6
-        self.correct_word = None if word_list_size == 0 else word_list[randrange(word_list_size)]
+        self.correct_word = (
+            None if word_list_size == 0 else word_list[randrange(word_list_size)]
+        )
         self.last_guess = None
         self.definite_letters = [None for i in range(5)]
         # Letters no longer usable, though they might have been correct choices earlier
@@ -261,7 +264,10 @@ class GameMaster:
             keep = True
             # Eliminate words with unusable letters or letters that don't align with "definite" letters
             for i, c in enumerate(word):
-                if self.definite_letters[i] is not None and self.definite_letters[i] != c:
+                if (
+                    self.definite_letters[i] is not None
+                    and self.definite_letters[i] != c
+                ):
                     keep = False
                     break
                 if c in self.eliminated_letters:
@@ -308,6 +314,7 @@ class GameMaster:
         for tried in pos_list:
             count += 0 if tried else 1
         return count
+
 
 class Player:
     """
@@ -364,15 +371,24 @@ class Player:
             self.game_master.allow_non_words = False
             return False, False
 
-        success, gray_letters, yellow_letters, green_letters = self.game_master.handle_guess(guess)
-        remaining_letters = [a for a in alphabet if a not in self.game_master.eliminated_letters]
+        (
+            success,
+            gray_letters,
+            yellow_letters,
+            green_letters,
+        ) = self.game_master.handle_guess(guess)
+        remaining_letters = [
+            a for a in alphabet if a not in self.game_master.eliminated_letters
+        ]
         remaining_letters_str = self._to_string(remaining_letters, True)
         print(f"Gray letters:   {self._to_string(gray_letters)}")
         print(f"Green letters:  {self._to_string(green_letters)}")
         print(f"Yellow letters: {self._to_string(yellow_letters)}")
         print(f"\nLetters left:   {remaining_letters_str}")
         print(f"Definite:       {self._to_string(self.game_master.definite_letters)}")
-        print(f"All yellows:    {self._to_string(self.game_master.get_all_yellow_letters(), True)}")
+        print(
+            f"All yellows:    {self._to_string(self.game_master.get_all_yellow_letters(), True)}"
+        )
         return False, False
 
     def _handle_robot_guess(self) -> Tuple[bool, bool]:
@@ -384,8 +400,15 @@ class Player:
             self.game_master.print_data()
             return False, True
         guess = self.game_master.select_usable_word(usable_words)
-        success, gray_letters, yellow_letters, green_letters = self.game_master.handle_guess(guess)
-        print(f"\nGuess is: {guess}. Turn {guess_num} of {self.game_master.total_guesses}")
+        (
+            success,
+            gray_letters,
+            yellow_letters,
+            green_letters,
+        ) = self.game_master.handle_guess(guess)
+        print(
+            f"\nGuess is: {guess}. Turn {guess_num} of {self.game_master.total_guesses}"
+        )
         if guess == self.game_master.correct_word:
             print(f"Victory!")
             return True, False
@@ -438,7 +461,9 @@ def run_many_games(game_count):
         victory, score = run_game()
         if victory:
             victory_count += 1
-            average_score = (average_score * float(victory_count) + float(score)) / float(victory_count + 1)
+            average_score = (
+                average_score * float(victory_count) + float(score)
+            ) / float(victory_count + 1)
         else:
             defeat_count += 1
     print("\nResults:")
@@ -446,5 +471,6 @@ def run_many_games(game_count):
     print(f"Total victories: {victory_count}")
     print(f"Total defeats:   {defeat_count}")
     print(f"Average score:   {average_score}")
+
 
 run_many_games(100)

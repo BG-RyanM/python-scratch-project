@@ -46,10 +46,10 @@ def make_plot(fig, idx):
     print("making buttons!")
     axprev = plt.axes([0.7, 0.0, 0.1, 0.075])
     axnext = plt.axes([0.81, 0.0, 0.1, 0.075])
-    bnext = plt.Button(axnext, 'Next')
+    bnext = plt.Button(axnext, "Next")
     bnext.on_clicked(index_object.next)
     index_object.next_button = bnext
-    bprev = plt.Button(axprev, 'Previous')
+    bprev = plt.Button(axprev, "Previous")
     bprev.on_clicked(index_object.prev)
     index_object.prev_button = bprev
 

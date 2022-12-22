@@ -13,12 +13,13 @@ async def test_func(info, raises_exception):
     print("<", info)
     return info
 
+
 # Returns list where each entry contains results of task or whatever Exception was raised
 async def run_tasks(timeout):
     task_list = []
     for i in range(10):
-        raises_exception = (random.randrange(3) == 0)
-        task = asyncio.create_task(test_func("test "+str(i), raises_exception))
+        raises_exception = random.randrange(3) == 0
+        task = asyncio.create_task(test_func("test " + str(i), raises_exception))
         task_list.append(task)
 
     results = []
@@ -49,10 +50,11 @@ async def run_tasks(timeout):
 
     return results
 
+
 async def run_test():
     results = await run_tasks(timeout=3)
     print("Results:")
-    for i,r in enumerate(results):
+    for i, r in enumerate(results):
         if isinstance(r, Exception):
             print(f"{i}: is exception {type(r)}")
         else:
@@ -62,5 +64,6 @@ async def run_test():
         return None
 
     nothing_task = asyncio.create_task(_do_nothing())
+
 
 asyncio.run(run_test())

@@ -1,5 +1,6 @@
 # Test of multiple returns as a tuple
 
+
 def return_stuff():
     x = 12
     y = "abc"

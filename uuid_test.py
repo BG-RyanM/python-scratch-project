@@ -22,8 +22,8 @@ ver_one = bytes(uuid.uuid1())
 print("version one uuid ", ver_one)
 """
 
-#bin_code: bytes = bytes("thing", "utf-8")
-#print(f"bin_code as string is {bin_code.decode('utf-8')}")
+# bin_code: bytes = bytes("thing", "utf-8")
+# print(f"bin_code as string is {bin_code.decode('utf-8')}")
 
 
 unicode_thing = u"Thingy"

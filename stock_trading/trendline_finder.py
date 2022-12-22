@@ -10,10 +10,13 @@ def make_coordinates():
     for x in range(100):
         xy_list.append((x, y))
         y = y + random.randrange(5) - 2
-        if y < 0: y = 0
-        if y > 99: y = 99
+        if y < 0:
+            y = 0
+        if y > 99:
+            y = 99
 
-def plot_graph(trend_pts, trend_pts2 = None):
+
+def plot_graph(trend_pts, trend_pts2=None):
     x_coords = [pair[0] for pair in xy_list]
     y_coords = [pair[1] for pair in xy_list]
     plt.plot(x_coords, y_coords)
@@ -26,6 +29,7 @@ def plot_graph(trend_pts, trend_pts2 = None):
         plt.plot(x_coords, y_coords, "bo")
     plt.show()
 
+
 def get_trendline(upper, start_x, end_x, min_dist):
     # Returns list
     # end_x is inclusive
@@ -34,7 +38,7 @@ def get_trendline(upper, start_x, end_x, min_dist):
         sy = xy_list[sx][1]
         best_x = None
         best_slope = -1000000.0 if upper else 1000000.0
-        for x in range(sx+1, ex+1):
+        for x in range(sx + 1, ex + 1):
             y = xy_list[x][1]
             slope = float((y - sy)) / float((x - sx))
             if upper and slope > best_slope:
@@ -62,13 +66,14 @@ def get_trendline(upper, start_x, end_x, min_dist):
     for i, pt in enumerate(pts_list):
         if i == 0:
             continue
-        if pts_list[i][0] - pts_list[i-1][0] >= min_dist:
-            if pts_list[i-1] not in ret_list:
-                ret_list.append(pts_list[i-1])
+        if pts_list[i][0] - pts_list[i - 1][0] >= min_dist:
+            if pts_list[i - 1] not in ret_list:
+                ret_list.append(pts_list[i - 1])
             if pts_list[i] not in ret_list:
                 ret_list.append(pts_list[i])
 
     return ret_list
+
 
 make_coordinates()
 trend_pts = get_trendline(True, 0, 80, 10)

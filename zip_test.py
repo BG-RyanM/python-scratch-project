@@ -29,7 +29,18 @@ else:
     print("out list 1", out_list1_2)
     print("out list 2", out_list2_2)
 
-container_tups = [("A", 1), ("B", 2), ("B+", 2), ("C", 3), ("D", 1), ("E", 2), ("F", 3), ("G", 1), ("H", 2), ("I", 3)]
+container_tups = [
+    ("A", 1),
+    ("B", 2),
+    ("B+", 2),
+    ("C", 3),
+    ("D", 1),
+    ("E", 2),
+    ("F", 3),
+    ("G", 1),
+    ("H", 2),
+    ("I", 3),
+]
 inactive_stations = [1, 2]
 
 # Basically, we find a block of containers that need shifting to the right in the list. The first container

@@ -1,6 +1,7 @@
 from datetime import datetime
 import attr
 
+
 def log_print(msg, *args):
     print(msg, *args)
 

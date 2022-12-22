@@ -2,6 +2,7 @@ import attr
 from typing import List
 from functools import partial
 
+
 class Obj:
     def __init__(self, **kwargs):
         """

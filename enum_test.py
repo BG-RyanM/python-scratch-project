@@ -1,8 +1,8 @@
 from enum import Enum, unique, IntEnum
 from typing import Dict
 
-class PetOwner:
 
+class PetOwner:
     class Animal(Enum):
         UNKNOWN = 0
         CAT = 1
@@ -34,7 +34,7 @@ print("Bird value is", PetOwner.Animal["BIRD"].value)
 dumb_string = "dumb\n123\nxyz"
 dumb_parts = dumb_string.split("\n")
 if type(dumb_string) == str:
-    print("dumb parts ",dumb_parts)
+    print("dumb parts ", dumb_parts)
 # dumb parts  ['dumb', '123', 'xyz']
 
 
@@ -109,8 +109,11 @@ class StackLightState(Enum):
     BLOCKING = "BLOCKING"
     MAINTENANCE = "MAINTENANCE"
 
+
 stack_light_state = StackLightState(StackLightState.OPERATIONAL)
-print(f"stack light state regular is {stack_light_state}, as str is '{str(stack_light_state)}'")
+print(
+    f"stack light state regular is {stack_light_state}, as str is '{str(stack_light_state)}'"
+)
 
 for state in StackLightState:
     print(f"state in StackLightState is '{state}'")

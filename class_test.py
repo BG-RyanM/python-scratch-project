@@ -1,5 +1,6 @@
 from typing import Dict
 
+
 class Dumb:
     def __init__(self, x, y):
         print("x, y =", x, ",", y)
@@ -8,7 +9,8 @@ class Dumb:
 def make_thing(the_class: type, params: Dict):
     return the_class(**params)
 
-#params_dict = {"x": 2, "y": 3, "z": 4}
+
+# params_dict = {"x": 2, "y": 3, "z": 4}
 params_dict = {"x": 2, "y": 3}
 make_thing(Dumb, params_dict)
 

@@ -1,7 +1,28 @@
 from random import randrange
 
-items = ["R", "FBN", "COS", "TOT", "AFK", "HEM", "PEW", "MP", "SIG", "GUP", "POW", "HYF", "PRS", "RTB", "CTP", "TFE", "VT", "SA", "CA"]
+items = [
+    "R",
+    "FBN",
+    "COS",
+    "TOT",
+    "AFK",
+    "HEM",
+    "PEW",
+    "MP",
+    "SIG",
+    "GUP",
+    "POW",
+    "HYF",
+    "PRS",
+    "RTB",
+    "CTP",
+    "TFE",
+    "VT",
+    "SA",
+    "CA",
+]
 uncompared_items = []
+
 
 class Node:
     root_node = None
@@ -62,8 +83,8 @@ class Node:
 
     @classmethod
     def rebalance(cls, root):
-        left_weight = (0 if root.left is None else root.left.get_weight())
-        right_weight = (0 if root.right is None else root.right.get_weight())
+        left_weight = 0 if root.left is None else root.left.get_weight()
+        right_weight = 0 if root.right is None else root.right.get_weight()
         if left_weight * 1.5 < right_weight:
             # right branch is bigger
             new_root = root.right
@@ -80,12 +101,14 @@ class Node:
             return new_root
         return root
 
+
 def setup():
     for i in items:
         uncompared_items.append(i)
     i = randrange(len(uncompared_items))
     Node.root_node = Node(uncompared_items[i])
     uncompared_items.pop(i)
+
 
 def rank_item(item):
     insert_node = Node.root_node
@@ -117,11 +140,13 @@ def rank_item(item):
     ordered_list = Node.root_node.get_ordered_list()
     print(f"Added {item} to tree, ordered list is {ordered_list}")
 
+
 def do_ranking():
     while len(uncompared_items) != 0:
         idx = randrange(len(uncompared_items))
         item = uncompared_items.pop(idx)
         rank_item(item)
+
 
 setup()
 do_ranking()

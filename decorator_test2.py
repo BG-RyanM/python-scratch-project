@@ -1,15 +1,16 @@
 import asyncio
 
+
 def my_decorator(func):
     async def inner(*args, **kwargs):
         print("--- start ---")
         await func(*args, **kwargs)
         print("--- end ---")
+
     return inner
 
 
 class MyClass(object):
-
     def __int__(self):
         pass
 

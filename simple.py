@@ -1,7 +1,9 @@
 # Testing what happens when thing is or'd with other
 
+
 def or_func(my_var=None):
     return my_var or 0
+
 
 # 6
 print("result 1:", or_func(6))
@@ -14,6 +16,7 @@ print("result 3:", or_func())
 def str_or_none(item: bytes) -> str:
     return None if item is None else item.decode("UTF-8")
 
+
 x1: bytes = b"thing"
 print(f"x1 to string value is '{str_or_none(x1)}'")
 x2: bytes = None
@@ -22,7 +25,7 @@ print(f"x2 to string value is '{str_or_none(x2)}'")
 some_list = [1, 2, 3, 4, 5]
 print("some_list minus last element is:", some_list[:-1])
 
-barcodes = ['R:71875:0.43.15.557,16731', 'BG03081:0.43.15.557,16731']
+barcodes = ["R:71875:0.43.15.557,16731", "BG03081:0.43.15.557,16731"]
 for raw_bc in barcodes:
     parts = raw_bc.split(":")
     processed = ":".join(parts[0:-1])
@@ -66,8 +69,8 @@ str_val = "BEDF001"
 as_bytes = bytes(str_val, "utf-8")
 print(f"string to bytes is {as_bytes}")
 # This doesn't work
-#as_bytes_again = bytes(as_bytes, "utf_8")
-#print(f"bytes to bytes is {as_bytes}")
+# as_bytes_again = bytes(as_bytes, "utf_8")
+# print(f"bytes to bytes is {as_bytes}")
 
 var_a = "cat"
 var_b = "dog"
@@ -75,7 +78,7 @@ var_a, var_b = var_b, var_a
 print(f"A and B post-swap are {var_a}, {var_b}")
 
 str_with_spaces = "banana head"
-space_free_str = "".join([c for c in str_with_spaces if c != ' '])
+space_free_str = "".join([c for c in str_with_spaces if c != " "])
 print(f"space free str is '{space_free_str}'")
 
 bool_list = [True, True, True, False, False]

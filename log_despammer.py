@@ -15,7 +15,7 @@ new_point = point._replace(x=3, y=5)
 print(f"new_point is {new_point}")
 
 
-class LogDespammer():
+class LogDespammer:
     """
     Class for logging spammy messages. The idea is that a particular message will be displayed on
     the first logging call, but subsequent calls won't display the message unless some amount of
@@ -23,7 +23,17 @@ class LogDespammer():
     """
 
     instance = None
-    Entry = namedtuple("Entry", ["string", "id", "time_window", "silent_repetitions", "last_dt", "unprinted_count"])
+    Entry = namedtuple(
+        "Entry",
+        [
+            "string",
+            "id",
+            "time_window",
+            "silent_repetitions",
+            "last_dt",
+            "unprinted_count",
+        ],
+    )
 
     def __init__(self):
         # Dict[int, LogDespammer.Entry]
@@ -37,7 +47,13 @@ class LogDespammer():
             LogDespammer.instance = LogDespammer()
         return LogDespammer.instance
 
-    def print(self, line: str, id: Optional[str] = None, time_window: Optional[float] = None, silent_repetitions: Optional[int] = None) -> str:
+    def print(
+        self,
+        line: str,
+        id: Optional[str] = None,
+        time_window: Optional[float] = None,
+        silent_repetitions: Optional[int] = None,
+    ) -> str:
         """
         Logs the line, if permissible. Also sets values specifying when the line may be logged again,
         either after a certain amount of time has elapsed or a certain number of repetitions.
@@ -64,18 +80,32 @@ class LogDespammer():
         entry = self._line_lookup.get(hash_val)
         time_now = datetime.utcnow()
         if not entry:
-            self._line_lookup[hash_val] = entry = self._make_new_entry(line, hash_val, time_window, silent_repetitions, time_now)
+            self._line_lookup[hash_val] = entry = self._make_new_entry(
+                line, hash_val, time_window, silent_repetitions, time_now
+            )
         time_diff = (time_now - entry.last_dt).total_seconds()
-        if time_diff == 0.0 or time_diff > entry.time_window or entry.unprinted_count >= entry.silent_repetitions:
-            rep_count_str = f" [{entry.unprinted_count} unprinted repetitions]" if entry.unprinted_count > 0 else ""
+        if (
+            time_diff == 0.0
+            or time_diff > entry.time_window
+            or entry.unprinted_count >= entry.silent_repetitions
+        ):
+            rep_count_str = (
+                f" [{entry.unprinted_count} unprinted repetitions]"
+                if entry.unprinted_count > 0
+                else ""
+            )
             print(f"{line}{rep_count_str}")
-            self._line_lookup[hash_val] = entry._replace(last_dt=time_now, unprinted_count=0)
+            self._line_lookup[hash_val] = entry._replace(
+                last_dt=time_now, unprinted_count=0
+            )
         else:
             new_rep_count = entry.unprinted_count + 1
             self._line_lookup[hash_val] = entry._replace(unprinted_count=new_rep_count)
         return hash_val
 
-    def _make_new_entry(self, line, hash_val, time_window, silent_repetitions, time_now):
+    def _make_new_entry(
+        self, line, hash_val, time_window, silent_repetitions, time_now
+    ):
         while self._num_entries >= self._max_entries:
             self._line_lookup.popitem()
             self._num_entries -= 1
@@ -90,10 +120,14 @@ class LogDespammer():
                 silent_repetitions = 1000000
 
         self._num_entries -= 1
-        return LogDespammer.Entry(string=line, id=hash_val, time_window=time_window, silent_repetitions=silent_repetitions, last_dt=time_now, unprinted_count=0)
-
-
-
+        return LogDespammer.Entry(
+            string=line,
+            id=hash_val,
+            time_window=time_window,
+            silent_repetitions=silent_repetitions,
+            last_dt=time_now,
+            unprinted_count=0,
+        )
 
 
 log_despammer = LogDespammer.get_despammer()

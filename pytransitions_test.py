@@ -11,17 +11,33 @@ class MatterStates(Enum):
 class Matter(object):
     def __init__(self):
         transitions = [
-            {'trigger': 'heat', 'source': MatterStates.SOLID, 'dest': MatterStates.LIQUID},
-            {'trigger': 'heat', 'source': MatterStates.LIQUID, 'dest': MatterStates.GAS},
-            {'trigger': 'cool', 'source': MatterStates.GAS, 'dest': MatterStates.LIQUID},
-            {'trigger': 'cool', 'source': MatterStates.LIQUID, 'dest': MatterStates.SOLID}
+            {
+                "trigger": "heat",
+                "source": MatterStates.SOLID,
+                "dest": MatterStates.LIQUID,
+            },
+            {
+                "trigger": "heat",
+                "source": MatterStates.LIQUID,
+                "dest": MatterStates.GAS,
+            },
+            {
+                "trigger": "cool",
+                "source": MatterStates.GAS,
+                "dest": MatterStates.LIQUID,
+            },
+            {
+                "trigger": "cool",
+                "source": MatterStates.LIQUID,
+                "dest": MatterStates.SOLID,
+            },
         ]
         self.machine = Machine(
-                model=self,
-                states=MatterStates,
-                transitions=transitions,
-                initial=MatterStates.SOLID,
-                send_event=True
+            model=self,
+            states=MatterStates,
+            transitions=transitions,
+            initial=MatterStates.SOLID,
+            send_event=True,
         )
 
     def on_enter_GAS(self, event: EventData):

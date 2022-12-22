@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 
+
 @contextmanager
 def dumb_resource():
     print("--- acquiring ---")
@@ -24,8 +25,10 @@ except ValueError:
 
 print("\n=============== Test Two ===============")
 
+
 class BreakoutException(Exception):
     pass
+
 
 @contextmanager
 def breakout_resource(withable_generator):
@@ -37,6 +40,7 @@ def breakout_resource(withable_generator):
     except Exception:
         print("Got some other exception")
         raise
+
 
 with breakout_resource(dumb_resource()):
     print("Breakable resource test!!")

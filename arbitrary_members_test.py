@@ -1,4 +1,3 @@
-
 class DynamicObject(object):
 
     """
@@ -73,7 +72,6 @@ class DynamicObject(object):
         return DynamicObject(**contruction_kwargs)
 
 
-
 obj = DynamicObject(cat=1, dog=2, bird=3)
 obj.fish = 4
 print("cat member is", obj.cat)
@@ -82,12 +80,18 @@ print("monkey member is", obj.monkey)
 del obj.dog
 print("dog member is", obj.dog)
 to_dict_func = DynamicObject.to_dict
+
+
 def wrapper_func():
     return obj.to_dict()
+
+
 print("obj dictionary is", wrapper_func())
 
 
-complex_obj = DynamicObject(apple=1, orange=2, grapes=DynamicObject(grape_array=[1, 2, 3, 4]))
+complex_obj = DynamicObject(
+    apple=1, orange=2, grapes=DynamicObject(grape_array=[1, 2, 3, 4])
+)
 print("\ncomplex object dictionary is", complex_obj.to_dict())
 rebuild_obj = DynamicObject.from_dict(complex_obj.to_dict())
 print("rebuilt complex object dictionary is", complex_obj.to_dict())

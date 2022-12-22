@@ -8,6 +8,7 @@ import yaml
 async def custom_sleep(orig_time: float):
     await asyncio.sleep(orig_time / float(speed_up_rate))
 
+
 def list_to_cs(lst):
     # Converts a list of strings to a single string with commas between items
     comma = False
@@ -39,16 +40,34 @@ class Container(object):
         """
         Prints the overall results with all the containers processed
         """
-        kicked_containers = [container for container in Container.container_list if container.was_kicked]
-        kicked_as_str = list_to_cs([str(container.id) for container in kicked_containers])
+        kicked_containers = [
+            container for container in Container.container_list if container.was_kicked
+        ]
+        kicked_as_str = list_to_cs(
+            [str(container.id) for container in kicked_containers]
+        )
         success_count = len(Container.container_list) - len(kicked_containers)
-        mislabeled_containers = [container for container in Container.container_list
-                                 if (container.id != container.reported_id and container.reported_id is not None)]
-        mislabeled_str = list_to_cs([f"{container.id} read as {container.reported_id}" for container in mislabeled_containers])
-        print(f"Successfully processed {success_count} out of {len(Container.container_list)} containers.")
+        mislabeled_containers = [
+            container
+            for container in Container.container_list
+            if (
+                container.id != container.reported_id
+                and container.reported_id is not None
+            )
+        ]
+        mislabeled_str = list_to_cs(
+            [
+                f"{container.id} read as {container.reported_id}"
+                for container in mislabeled_containers
+            ]
+        )
+        print(
+            f"Successfully processed {success_count} out of {len(Container.container_list)} containers."
+        )
         print(f"Kicked containers were: {kicked_as_str}")
         if len(mislabeled_containers) > 0:
             print(f"*** ERROR ***: mislabeled containers were: {mislabeled_str}")
+
 
 class Cell(object):
     """
@@ -108,14 +127,20 @@ class Cell(object):
         """
         :return: True if cell has finished all its processing
         """
-        return Cell.last_container_routed and len(self._enroute_queue) == 0 and len(self._actual_queue) == 0
+        return (
+            Cell.last_container_routed
+            and len(self._enroute_queue) == 0
+            and len(self._actual_queue) == 0
+        )
 
     def get_queues_as_str(self) -> str:
         """
         :return: Contents of queues as readable string
         """
-        ret_str = f"S=[{list_to_cs([str(x.id) for x in self.super_queue])}] " + \
-                  f"K=[{list_to_cs([str(x.id) for x in self.known_queue])}]"
+        ret_str = (
+            f"S=[{list_to_cs([str(x.id) for x in self.super_queue])}] "
+            + f"K=[{list_to_cs([str(x.id) for x in self.known_queue])}]"
+        )
         return ret_str
 
     async def add_container(self, container: Container):
@@ -140,15 +165,27 @@ class Cell(object):
         for cell in Cell.cell_list:
             if cell is exclude_cell:
                 continue
-            removed = Cell._remove_from_queue(cell.expected_queue, container, surgical=True)
+            removed = Cell._remove_from_queue(
+                cell.expected_queue, container, surgical=True
+            )
             if removed:
-                print(f"cell {cell.id}: container {container.id} pulled from Expected queue, is at cell {exclude_cell.id}")
-            removed = Cell._remove_from_queue(cell.known_queue, container, surgical=True)
+                print(
+                    f"cell {cell.id}: container {container.id} pulled from Expected queue, is at cell {exclude_cell.id}"
+                )
+            removed = Cell._remove_from_queue(
+                cell.known_queue, container, surgical=True
+            )
             if removed:
-                print(f"cell {cell.id}: container {container.id} pulled from Known queue, is at cell {exclude_cell.id}")
-            removed = Cell._remove_from_queue(cell.super_queue, container, surgical=True)
+                print(
+                    f"cell {cell.id}: container {container.id} pulled from Known queue, is at cell {exclude_cell.id}"
+                )
+            removed = Cell._remove_from_queue(
+                cell.super_queue, container, surgical=True
+            )
             if removed:
-                print(f"cell {cell.id}: container {container.id} pulled from Super queue, is at cell {exclude_cell.id}")
+                print(
+                    f"cell {cell.id}: container {container.id} pulled from Super queue, is at cell {exclude_cell.id}"
+                )
 
     async def make_tasks(self):
         """
@@ -174,7 +211,10 @@ class Cell(object):
             if len(self._enroute_queue) > 0:
                 # At least one container is enroute; find out if it's there yet.
                 container = self._enroute_queue[0]
-                time_remaining = self._arrival_time - (datetime.utcnow() - container.creation_time).total_seconds()
+                time_remaining = (
+                    self._arrival_time
+                    - (datetime.utcnow() - container.creation_time).total_seconds()
+                )
                 if time_remaining > 0.0:
                     # We can sleep some more...
                     await custom_sleep(time_remaining)
@@ -199,7 +239,9 @@ class Cell(object):
                 async with self._lock:
                     next_container = self._actual_queue.pop(0)
                     got_barcode = self._handle_pick_area_arrival(next_container)
-                    self._container_in_processing = next_container if got_barcode else None
+                    self._container_in_processing = (
+                        next_container if got_barcode else None
+                    )
             else:
                 # Sleep for small amount of time to return control to other coroutines
                 await custom_sleep(0.1)
@@ -224,10 +266,14 @@ class Cell(object):
         # Add to known queue
         self.known_queue.append(container)
         if was_in_queue:
-            print(f"cell {self.id}: container {container.reported_id} arrival detected, queues are: {self.get_queues_as_str()}")
+            print(
+                f"cell {self.id}: container {container.reported_id} arrival detected, queues are: {self.get_queues_as_str()}"
+            )
         else:
-            print(f"cell {self.id}: WARNING, unexpected container {container.reported_id} arrival "
-                  f"detected, queues are: {self.get_queues_as_str()}")
+            print(
+                f"cell {self.id}: WARNING, unexpected container {container.reported_id} arrival "
+                f"detected, queues are: {self.get_queues_as_str()}"
+            )
             self._add_to_super_queue(container)
 
     def _handle_pick_area_arrival(self, actual_container: Container) -> bool:
@@ -250,7 +296,9 @@ class Cell(object):
             if len(self.super_queue) > 0 and self.super_queue[0] in self.known_queue:
                 known_container = self.super_queue[0]
                 if known_container is not actual_container:
-                    print(f"cell {self.id}: *** ERROR ***, container {known_container.id} is not {actual_container.id}")
+                    print(
+                        f"cell {self.id}: *** ERROR ***, container {known_container.id} is not {actual_container.id}"
+                    )
             else:
                 print(f"cell {self.id}: WARNING, container had no barcode, kicked")
                 actual_container.was_kicked = True
@@ -264,13 +312,19 @@ class Cell(object):
         # Take container off the Known queue
         was_in_queue = self._remove_from_queue(self.known_queue, known_container)
         if not was_in_queue:
-            print(f"cell {self.id}: WARNING, container {known_container.reported_id} not in Known queue.")
+            print(
+                f"cell {self.id}: WARNING, container {known_container.reported_id} not in Known queue."
+            )
         # Take container off the Super queue
         was_in_queue = self._remove_from_queue(self.super_queue, known_container)
         if not was_in_queue:
-            print(f"cell {self.id}: WARNING, container {known_container.reported_id} not in Super queue.")
-        print(f"cell {self.id}: container {known_container.reported_id} moves to processing area, "
-              f"queues are: {self.get_queues_as_str()}")
+            print(
+                f"cell {self.id}: WARNING, container {known_container.reported_id} not in Super queue."
+            )
+        print(
+            f"cell {self.id}: container {known_container.reported_id} moves to processing area, "
+            f"queues are: {self.get_queues_as_str()}"
+        )
         return True
 
     @staticmethod
@@ -285,7 +339,7 @@ class Cell(object):
             queue.pop(index)
         else:
             # Want to also remove everything in queue ahead of item
-            for i in range(index+1):
+            for i in range(index + 1):
                 queue.pop(0)
         return True
 
@@ -301,7 +355,6 @@ class Cell(object):
         self.super_queue.append(container)
 
 
-
 class Orchestrator(object):
     """
     Represents the system orchestrator, which routes containers to cells
@@ -313,9 +366,8 @@ class Orchestrator(object):
         self._overall_arrival_period = 5
         self._misroute_rate = 2
 
-
     def load_params_from_yaml(self, filename: str):
-        with open(filename, 'r') as file:
+        with open(filename, "r") as file:
             config = yaml.safe_load(file)
         sim_settings = config["sim_settings"]
         Cell.max_containers = sim_settings["max_containers_per_cell"]
@@ -326,11 +378,13 @@ class Orchestrator(object):
         for i in range(num_cells):
             cell = Cell(i)
             Cell.cell_list.append(cell)
-            cell.arrival_time = sim_settings["cell_arrival_time"] + i * sim_settings["cell_distance_penalty"]
+            cell.arrival_time = (
+                sim_settings["cell_arrival_time"]
+                + i * sim_settings["cell_distance_penalty"]
+            )
 
         self._overall_arrival_period = sim_settings["overall_arrival_period"]
         self._misroute_rate = sim_settings["misroute_rate"]
-
 
     async def run(self):
         """
@@ -368,7 +422,7 @@ class Orchestrator(object):
         best_score = 100000
         for cell in Cell.cell_list:
             score = cell.get_score()
-            #print(f"*** score for cell {orch.id} is {score}")
+            # print(f"*** score for cell {orch.id} is {score}")
             if score >= 0 and score < best_score:
                 best_cell = cell
                 best_score = score
@@ -382,25 +436,24 @@ class Orchestrator(object):
         options = [cell for cell in Cell.cell_list if cell is not cell_to_skip]
         return options[random.randrange(len(options))]
 
+
 orchestrator = Orchestrator()
 speed_up_rate = 1
+
 
 async def run_all():
     tasks = [asyncio.create_task(orchestrator.run()), asyncio.create_task(Cell.run())]
     await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
     Container.print_outcome()
 
+
 if __name__ == "__main__":
     parser = ArgumentParser(
-        add_help=True,
-        description="Simulation of Cell and client routing systems",
+        add_help=True, description="Simulation of Cell and client routing systems",
     )
 
     parser.add_argument(
-        "--config",
-        type=str,
-        required=True,
-        help="The configuration YAML file",
+        "--config", type=str, required=True, help="The configuration YAML file",
     )
 
     parser.add_argument(
@@ -411,10 +464,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--speed",
-        type=int,
-        default=1,
-        help="Causes time to go X times faster",
+        "--speed", type=int, default=1, help="Causes time to go X times faster",
     )
 
     args = parser.parse_args()

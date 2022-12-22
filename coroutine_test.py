@@ -17,6 +17,7 @@ def get_x():
     yield tornado_sleep(0.5)
     raise Return(10)
 
+
 @coroutine
 def do_test1():
     print("getting x...")
@@ -26,8 +27,7 @@ def do_test1():
 
 
 # Helper class
-class FutureTester():
-
+class FutureTester:
     def __init__(self):
         self._future = Future()
 
@@ -39,6 +39,7 @@ class FutureTester():
         await asyncio.sleep(5.0)
         self._future.set_result(77)
 
+
 # Testing how to wait on a future without using await
 @coroutine
 def do_test2(future_tester):
@@ -47,18 +48,21 @@ def do_test2(future_tester):
     while not future_tester.future.done():
         yield tornado_sleep(0.5)
     # BAD
-    #yield future_tester.future.done()
+    # yield future_tester.future.done()
     print("done!")
+
 
 @coroutine
 def inner_coroutine():
     yield tornado_sleep(0.5)
     raise Return(5)
 
+
 @coroutine
 def outer_coroutine():
     result = yield inner_coroutine()
     raise Return(result + 1)
+
 
 async def main():
     print("Test One")
@@ -76,5 +80,6 @@ async def main():
     await fut
     # should be 6
     print("result:", fut.result())
+
 
 asyncio.run(main())

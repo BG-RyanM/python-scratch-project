@@ -24,7 +24,9 @@ async def run_test():
     task2 = asyncio.create_task(func2())
 
     try:
-        done, not_done = await asyncio.wait({task1, task2}, return_when=asyncio.FIRST_COMPLETED)
+        done, not_done = await asyncio.wait(
+            {task1, task2}, return_when=asyncio.FIRST_COMPLETED
+        )
     except MyException:
         print("I got MyException!!")
 
@@ -35,7 +37,7 @@ async def run_test():
             print("MyException came through in result")
 
 
-#asyncio.run(run_test())
+# asyncio.run(run_test())
 
 
 def run_async_func(done_callback: Callable[[bool, Any], Any]):
@@ -64,7 +66,9 @@ def run_async_func(done_callback: Callable[[bool, Any], Any]):
     async def _func_wrapper():
         # Returns (True if succeeded without timeout, the result of 'func')
         tsk = loop.create_task(_the_func())
-        done, pending = await asyncio.wait([tsk], timeout=3, return_when=asyncio.FIRST_COMPLETED)
+        done, pending = await asyncio.wait(
+            [tsk], timeout=3, return_when=asyncio.FIRST_COMPLETED
+        )
         if tsk in pending:
             return False, None
         return True, tsk.result()
@@ -75,7 +79,7 @@ def run_async_func(done_callback: Callable[[bool, Any], Any]):
         done_callback(*tup)
 
     if loop and loop.is_running():
-        print('Async event loop already running. Adding coroutine to the event loop.')
+        print("Async event loop already running. Adding coroutine to the event loop.")
         main_task = loop.create_task(_func_wrapper())
         # ^-- https://docs.python.org/3/library/asyncio-task.html#task-object
         # Optionally, a callback function can be executed when the coroutine completes
@@ -83,18 +87,19 @@ def run_async_func(done_callback: Callable[[bool, Any], Any]):
 
 
 async def second_test():
-
     def _done(success, result):
         print("got into done callback")
 
     run_async_func(_done)
     await asyncio.sleep(6.5)
 
+
 print("\n----------------------------------------\n")
 
-#asyncio.run(second_test())
+# asyncio.run(second_test())
 
 timer_task = None
+
 
 def setup_timer():
     async def _do_it():
@@ -105,8 +110,10 @@ def setup_timer():
     global timer_task
     timer_task = asyncio.create_task(_do_it())
 
+
 async def third_test():
     setup_timer()
     await asyncio.sleep(15)
+
 
 asyncio.run(third_test())

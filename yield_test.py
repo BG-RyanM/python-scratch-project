@@ -11,6 +11,7 @@ def infinite_sequence():
         yield num
         num += 1
 
+
 gen = infinite_sequence()
 print("gen type is", type(gen))
 for i in range(10):
@@ -18,6 +19,7 @@ for i in range(10):
     print(f"item is: {item}")
 
 print("\n---------------------")
+
 
 def animals_generator():
     animals = ["cow", "zebra", "walrus"]

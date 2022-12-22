@@ -7,6 +7,7 @@ from enum import (
     unique,
 )
 
+
 @unique
 class FishingStates(str, Enum):
     INIT = "INIT"
@@ -17,6 +18,7 @@ class FishingStates(str, Enum):
     REEL_FISH = "REEL_FISH"
     REMOVE_FISH = "REMOVE_FISH"
     CLEANUP = "CLEANUP"
+
 
 # State machine (using transitions library) that represents a person fishing with
 # a fishing rod.
@@ -83,30 +85,29 @@ class FishingMachine(object):
     # corresponds to FishingStates.BAITING
     async def on_enter_BAITING(self, event: EventData):
         print("Machine: BAITING state")
-        ret_list = event.kwargs.get('ret_baits', None)
+        ret_list = event.kwargs.get("ret_baits", None)
         baits = ["worm", "fly", "radish"]
         if ret_list is not None:
             ret_list.append(baits[random.randrange(3)])
         await asyncio.sleep(5)
-        await self.do_cast() # go to next state
+        await self.do_cast()  # go to next state
 
     async def on_enter_CASTING(self, event: EventData):
         print("Machine: CASTING state")
         await asyncio.sleep(5)
-        await self.wait_for_fish() # go to next state
+        await self.wait_for_fish()  # go to next state
 
     async def on_enter_WAIT_FISH(self, event: EventData):
 
         # if we wait a long time with no bite, it must mean that no fish are left in pond
         async def _timeout():
             await asyncio.sleep(100)
-            await self.cleanup() # proceed to CLEANUP state
+            await self.cleanup()  # proceed to CLEANUP state
 
         print("Machine: WAIT_FISH state")
         self._timeout_task = asyncio.create_task(_timeout())
 
     async def on_enter_REEL_FISH(self, event: EventData):
-
         async def _perform_reel(will_succeed):
             await asyncio.sleep(5)
             return will_succeed
@@ -197,5 +198,6 @@ async def run_fishing_simulation():
 async def run_main():
     await fishing_machine.run()
     await asyncio.gather(run_pond(), run_fishing_simulation())
+
 
 asyncio.run(run_main())

@@ -92,29 +92,21 @@ async def second_test():
 
 print("\n----------------------------------------\n")
 
-asyncio.run(second_test())
+#asyncio.run(second_test())
 
+timer_task = None
 
-def do_some_stuff():
-    with trace.transaction('myapp.do_some_stuff', 'state_function'):
-        with trace.span('do_thing1'):
-            # Code in the span goes here
-            trace.transaction_result('success')
+def setup_timer():
+    async def _do_it():
+        await asyncio.sleep(3)
+        print("timer expired")
+        setup_timer()
 
-        with trace.span('do_thing2'):
-            # Code in the span goes here
-            trace.transaction_result('success')
+    global timer_task
+    timer_task = asyncio.create_task(_do_it())
 
-        # Time for the nested transaction
-        parent_context_id = trace.current_context_id()
-        with trace.transaction_context('app.do_some_stuff_main_loop', 'i_dunno_whats_a_good_name', parent_context_id):
-            for i in range(10):
-                with trace.span('do_a_repeated_thing'):
-                    # Code in the span goes here
-                    trace.transaction_result('success')
+async def third_test():
+    setup_timer()
+    await asyncio.sleep(15)
 
-        # Hmmm, should the "with..." line and the "for i... line" switch places?
-
-        with trace.span('cleanup_stuff'):
-            # Code in the span goes here
-            trace.transaction_result('success')
+asyncio.run(third_test())

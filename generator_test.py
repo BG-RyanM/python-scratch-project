@@ -25,3 +25,14 @@ rand_func = get_random_number_maker(6)
 for r in range(10):
     print(rand_func())
 
+# The next() test
+test_tuples = [("cat", 1), ("bird", 2), ("dog", 1), ("fish", 2)]
+
+
+def find_animal(num):
+    result = next((tup[0] for tup in test_tuples if tup[1] == num), None)
+    print(f"First animal of type {num} is {result}")
+
+find_animal(1)
+find_animal(2)
+find_animal(3)

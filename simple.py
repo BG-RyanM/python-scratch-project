@@ -73,3 +73,16 @@ var_a = "cat"
 var_b = "dog"
 var_a, var_b = var_b, var_a
 print(f"A and B post-swap are {var_a}, {var_b}")
+
+str_with_spaces = "banana head"
+space_free_str = "".join([c for c in str_with_spaces if c != ' '])
+print(f"space free str is '{space_free_str}'")
+
+bool_list = [True, True, True, False, False]
+print("sum of bools is", sum(bool_list))
+
+fat_thing = None
+if fat_thing == "something":
+    print("fat_thing is something")
+else:
+    print("fat_thing is None")

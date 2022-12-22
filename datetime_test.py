@@ -1,4 +1,4 @@
-from datetime import datetime, tzinfo
+from datetime import datetime, tzinfo, timedelta
 from dateutil import tz
 
 def run_test():
@@ -15,3 +15,25 @@ def run_test():
 
 
 run_test()
+
+some_time = datetime.utcnow()
+if some_time is None:
+    print("sometime is None")
+nonset_dt = datetime.min
+if nonset_dt == datetime.min:
+    print("nonset worked correctly")
+set_dt: datetime = datetime.utcnow()
+if set_dt > datetime.min:
+    print("set worked correctly")
+
+new_time = some_time - timedelta(milliseconds=float(1000.0/60.0))
+print("new_time is", new_time, "some_time is", some_time)
+
+some_dates = []
+for i in range(5):
+    dt = some_time - timedelta(days=i)
+    some_dates.append(dt)
+
+some_dates.sort()
+print(some_dates)
+

@@ -1,22 +1,43 @@
-async def do_some_stuff_for_me():
-    with trace.transaction("do_some_stuff_for_me", "function"): # Should I use some name besides "function"?
+from datetime import datetime
+import attr
 
-        with trace.span("do_setup"):
-            # Do various setup
+def log_print(msg, *args):
+    print(msg, *args)
 
-        with trace.span("do_my_big_loop"):
-            while(keep_doing_the_loop):
-                with trace.span("task_A_in_loop"):
-                    # Do task A stuff
 
-                with trace.span("task_B_in_loop"):
-                    # Do task B stuff
+log_print("hi", 1, 2)
 
-                with trace.span("task_C_in_loop"):
-                    # Do task C stuff
-                    if need_to_do_special_subtask:
-                        # This subtask is only run sometimes
-                        with trace.span("subtask_C1"):
-                            # Do the subtask
+thing1 = None
+thing2 = datetime.utcnow()
+if thing1 and not thing2:
+    print("case 1")
+if not thing1 and thing2:
+    print("case 2")
 
-container_dict = yield container_db.find_one({"barcode": barcode}, sort=[("created_time", DESCENDING)])
+
+@attr.s(slots=True)
+class Dumb(object):
+    x = attr.ib(type=int, default=None)
+
+
+dumb = Dumb(x=1)
+print(f"dumb type is {type(dumb)}")
+print("dumb.x =", dumb.x)
+
+
+def list_checker(the_list, name):
+    if not the_list:
+        print(f"List {name} is empty")
+    else:
+        print(f"List {name} is not empty")
+
+
+my_list1 = None
+my_list2 = []
+my_list3 = ["A", "B", "C"]
+
+list_checker(my_list1, "my_list1")
+list_checker(my_list2, "my_list2")
+list_checker(my_list3, "my_list3")
+
+print("neat my_list3 is", ", ".join(my_list3))

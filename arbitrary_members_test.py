@@ -1,3 +1,11 @@
+"""
+Notes:
+
+A demonstration of a class whose instances can be dynamically populated with data, easily accessible
+as member variables.
+"""
+
+
 class DynamicObject(object):
 
     """

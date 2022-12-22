@@ -2,6 +2,12 @@ import asyncio
 from random import randrange
 from typing import Any, Callable
 
+"""
+Notes:
+
+Code that demonstrates how to do various things with async functions and tasks.
+"""
+
 
 class MyException(Exception):
     pass
@@ -102,6 +108,7 @@ timer_task = None
 
 
 def setup_timer():
+    # Uses recursion; not really the best way to solve this problem.
     async def _do_it():
         await asyncio.sleep(3)
         print("timer expired")

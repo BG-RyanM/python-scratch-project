@@ -4,6 +4,14 @@ from typing import Dict, Any, Optional, List, Union
 import functools
 
 
+"""
+Notes:
+
+Demonstrates how to use attr library. Also some demonstration of how to make a class
+cast-able into a Dict.
+"""
+
+
 @attr.s
 class TestHeld(object):
     number = attr.ib(type=int, default=-1, validator=attr.validators.instance_of(int))
@@ -60,6 +68,11 @@ holder_bytes.print_info()
 
 @attr.s
 class ConveyorQueueItem:
+    """
+    Objects of this class can be cast into a dictionary via dict(x). That's what the
+    __iter__ and __next__ functions do.
+    """
+
     container_id = attr.ib(type=str, validator=attr.validators.instance_of(str))
     timestamp = attr.ib(type=int, validator=attr.validators.instance_of(int))
     is_known = attr.ib(type=bool, validator=attr.validators.instance_of(bool))

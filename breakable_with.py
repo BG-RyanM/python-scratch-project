@@ -1,5 +1,18 @@
 from contextlib import contextmanager
 
+"""
+Notes:
+
+Demonstrates:
+1. How to create a resource that can be used with Python 'with' operator, e.g.:
+
+    with my_resource() as name:
+        ...
+
+2. A method for breaking out of 'with' blocks, not unlike how `break` works for
+    for/with loops.
+"""
+
 
 @contextmanager
 def dumb_resource():

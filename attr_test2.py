@@ -2,6 +2,13 @@ import attr
 from typing import List
 from functools import partial
 
+"""
+Notes:
+
+Doesn't actually use attr, but shows how to programmatically add data members and functions
+to an object at runtime. Feature use of partial().
+"""
+
 
 class Obj:
     def __init__(self, **kwargs):

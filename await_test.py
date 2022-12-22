@@ -1,7 +1,12 @@
 import random
 import asyncio
 
-# Test of asyncio gather() combined with a timeout feature
+"""
+Notes:
+
+Test of asyncio gather() combined with a timeout feature. Shows how to run multiple async
+functions at once, with a timeout to deal with any that don't finish quickly enough.
+"""
 
 # A function that sleeps for a random amount of time and might raise an exception
 async def test_func(info, raises_exception):

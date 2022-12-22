@@ -1,5 +1,12 @@
 from typing import Dict
 
+"""
+Notes:
+
+Simple experiments with classes and a factory method that can make classes of an
+arbitrary type.
+"""
+
 
 class Dumb:
     def __init__(self, x, y):

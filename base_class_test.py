@@ -1,3 +1,10 @@
+"""
+Notes:
+
+Experiments with inheritance, both multiple and single.
+"""
+
+
 class BaseClassA:
     def __init__(self):
         pass

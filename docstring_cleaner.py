@@ -41,7 +41,7 @@ def process_file(file_path):
 
     out_lines = parse_file(read_lines)
 
-    file = open(file_path, 'w')
+    file = open(file_path, "w")
     file.writelines(out_lines)
     file.close()
 
@@ -56,13 +56,13 @@ def parse_file(lines):
     open_quotes_line_num = -1
     for idx, line in enumerate(lines):
         # How many triple quotes are on this line?
-        count = line.count("\"\"\"")
+        count = line.count('"""')
         if count == 1 and open_quotes_line_num == -1:
             # Found a line with opening triple quotes
             open_quotes_line_num = idx
         elif count == 1 and open_quotes_line_num != -1:
             # Found a line with closing triple quotes
-            mashed_lines = mash_lines(lines[open_quotes_line_num:idx+1])
+            mashed_lines = mash_lines(lines[open_quotes_line_num : idx + 1])
             out_lines.extend(mashed_lines)
             open_quotes_line_num = -1
         elif open_quotes_line_num == -1:
@@ -94,7 +94,7 @@ def mash_lines(lines):
 
 
 parser = argparse.ArgumentParser(description="Script to compress docstrings")
-parser.add_argument('--file_list', required=True)
+parser.add_argument("--file_list", required=True)
 args = parser.parse_args()
 
 process_all_files(args.file_list)

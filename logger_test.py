@@ -5,6 +5,7 @@ from logging import Logger
 Experiments at overriding logger with a custom Logger class.
 """
 
+
 class MyLogger(Logger):
     def __init__(self, name, *args, **kwargs):
         super(MyLogger, self).__init__(name, *args, **kwargs)

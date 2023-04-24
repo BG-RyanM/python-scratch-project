@@ -59,9 +59,7 @@ class EventWithData(asyncio.Event):
 async def process(my_event: EventWithData):
     while True:
         try:
-            count = await asyncio.wait_for(
-                my_event.wait(), timeout=15.0
-            )
+            count = await asyncio.wait_for(my_event.wait(), timeout=15.0)
         except asyncio.TimeoutError:
             print("Timeout")
             break
@@ -91,5 +89,6 @@ async def do_test():
     await asyncio.sleep(4)
 
     await process_task
+
 
 asyncio.run(do_test())

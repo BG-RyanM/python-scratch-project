@@ -40,7 +40,7 @@ sub.what_am_i()
 class SimpleBase:
     def __init__(self):
         print("I am simple base")
-        
+
     def special_func(self, x=1, y=2):
         print(f"special_func() reports {x}, {y}")
 
@@ -52,7 +52,7 @@ class MoreComplexChild(SimpleBase):
 
     def extra(self):
         print("I am extra()")
-        
+
     def special_func(self, x=3, y=4):
         super(MoreComplexChild, self).special_func(x)
 

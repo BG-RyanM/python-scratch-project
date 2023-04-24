@@ -4,6 +4,7 @@ import functools
 Experiments with Python filter() and reduce() functions.
 """
 
+
 def sum_odd_numbers(num_list):
     _num_list = num_list.copy()
     odds_list = filter(lambda n: isinstance(n, int) and n % 2 == 1, _num_list)

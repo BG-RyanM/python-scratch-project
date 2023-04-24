@@ -2,6 +2,7 @@
 Demonstration of simple inheritence in Python.
 """
 
+
 class Animal:
     def __init__(self, *args, **kwargs):
         print(f"I am an animal\nargs={args}\nkwargs={kwargs}")

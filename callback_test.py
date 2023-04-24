@@ -8,6 +8,7 @@ def func_a(callback: Callable[[int], None]):
 
 def func_b():
     y = 0
+
     def my_callback(x: int):
         nonlocal y
         print("in my_callback(), x is", x)
@@ -15,5 +16,6 @@ def func_b():
 
     func_a(my_callback)
     print("y =", y)
+
 
 func_b()

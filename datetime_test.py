@@ -5,6 +5,7 @@ from dateutil import tz
 Experiments with datetime
 """
 
+
 def run_test():
     utc_datetime = datetime.utcnow()
     # Get local timezone
@@ -63,9 +64,7 @@ now = datetime.now()
 print(get_formatted_time(now, False))
 print(get_formatted_time(now, True))
 
-sample_dt = datetime.strptime(
-    "2023-02-14 12:34:56.789", "%Y-%m-%d %H:%M:%S.%f"
-)
+sample_dt = datetime.strptime("2023-02-14 12:34:56.789", "%Y-%m-%d %H:%M:%S.%f")
 dt_utc = sample_dt.astimezone(tz.UTC)
 sample_timestamp = datetime.timestamp(sample_dt)
 print("sample_dt is", sample_dt)

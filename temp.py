@@ -4,6 +4,7 @@ import os
 
 from pretty_table import pretty_table
 
+
 def log_print(msg, *args):
     print(msg, *args)
 
@@ -57,7 +58,11 @@ if not dumb_set2:
 f_string = "Hi {name}, it is {day}. Your name is {name}."
 print("Message is", f_string.format(name="Ryan", day="Friday"))
 
-my_table = [["Alvin", "Chipmunk", "Male"], ["Porpy", "Porpoise", "Male"], ["Maxwell", "Cat", "Female"]]
+my_table = [
+    ["Alvin", "Chipmunk", "Male"],
+    ["Porpy", "Porpoise", "Male"],
+    ["Maxwell", "Cat", "Female"],
+]
 my_table_with_header = [["Name", "Species", "Sex"]] + my_table
 print("my table is:\n-------------------\n" + pretty_table(my_table_with_header))
 
@@ -71,6 +76,6 @@ try:
 except ValueError:
     pass
 
-print("BG_ZOOKEEPER_ROOT env variable is", os.environ.get('BG_ZOOKEEPER_ROOT'))
-print("DUMB_VAR env variable is", os.environ.get('DUMB_VAR'))
-print("NONEXISTENT_VAR env variable is", os.environ.get('NONEXISTENT_VAR'))
+print("BG_ZOOKEEPER_ROOT env variable is", os.environ.get("BG_ZOOKEEPER_ROOT"))
+print("DUMB_VAR env variable is", os.environ.get("DUMB_VAR"))
+print("NONEXISTENT_VAR env variable is", os.environ.get("NONEXISTENT_VAR"))

@@ -1,9 +1,11 @@
-
-table = [["SKU", "Barcode", "Quantity", "Item Name", "Order"],
-         [12345, "blahblah-789846", 3, "Large Feathered Hat", 56789],
-         [12346, "blahblah-789847", 2, "Purple Pants", 56777, "extra"]]
-#for row in table:
+table = [
+    ["SKU", "Barcode", "Quantity", "Item Name", "Order"],
+    [12345, "blahblah-789846", 3, "Large Feathered Hat", 56789],
+    [12346, "blahblah-789847", 2, "Purple Pants", 56777, "extra"],
+]
+# for row in table:
 #    print('| {:1} | {:^4} | {:>4} | {:<3} |'.format(*row))
+
 
 def pretty_table(table: list, has_header: bool = True):
     """
@@ -53,4 +55,3 @@ def pretty_table(table: list, has_header: bool = True):
 
 table_str = pretty_table(table, True)
 print(table_str)
-

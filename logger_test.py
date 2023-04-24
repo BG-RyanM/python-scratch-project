@@ -1,6 +1,9 @@
 import logging
 from logging import Logger
 
+"""
+Experiments at overriding logger with a custom Logger class.
+"""
 
 class MyLogger(Logger):
     def __init__(self, name, *args, **kwargs):

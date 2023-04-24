@@ -7,8 +7,11 @@ from concurrent.futures import Future
 import time
 import asyncio
 
-# Tests involving the use of coroutines. Python3 provides async/await, but sometimes we use
-# coroutines for backwards compatibility
+"""
+Tests involving the use of coroutines. Python3 provides async/await, but sometimes we use
+coroutines for backwards compatibility with Python2 code, which doesn't really support
+asyncio.
+"""
 
 # This is the coroutine version of an async function. There is no await in it. Notice
 # the use of raise Return()

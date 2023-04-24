@@ -1,5 +1,8 @@
 import asyncio
 
+"""
+Demonstrates how to make a deocorator that you can use with @.
+"""
 
 def my_decorator(func):
     async def inner(*args, **kwargs):

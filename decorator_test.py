@@ -1,3 +1,7 @@
+"""
+Demonstrates how Python decorators work, without making use of @.
+"""
+
 def get_string_as_upper(my_string: str):
     return my_string.upper()
 

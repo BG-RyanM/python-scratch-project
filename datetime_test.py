@@ -1,6 +1,9 @@
 from datetime import datetime, tzinfo, timedelta
 from dateutil import tz
 
+"""
+Experiments with datetime
+"""
 
 def run_test():
     utc_datetime = datetime.utcnow()
@@ -37,3 +40,41 @@ for i in range(5):
 
 some_dates.sort()
 print(some_dates)
+
+current_dt = datetime.now()
+print("current_dt is", current_dt)
+
+for h in range(24):
+    reg_h = h % 12
+    if reg_h == 0:
+        reg_h = 12
+    am_pm = "am" if (h / 12) < 1 else "pm"
+    print(f"mil hour is {h}, regular hour is {reg_h}{am_pm}")
+
+
+def get_formatted_time(dt: datetime, military_time):
+    if military_time:
+        return dt.strftime("%Y-%m-%d %H:%M:%S")
+    else:
+        return dt.strftime("%Y-%m-%d %I:%M:%S %p")
+
+
+now = datetime.now()
+print(get_formatted_time(now, False))
+print(get_formatted_time(now, True))
+
+sample_dt = datetime.strptime(
+    "2023-02-14 12:34:56.789", "%Y-%m-%d %H:%M:%S.%f"
+)
+dt_utc = sample_dt.astimezone(tz.UTC)
+sample_timestamp = datetime.timestamp(sample_dt)
+print("sample_dt is", sample_dt)
+print("dt_utc is", dt_utc)
+print("sample_timestamp is", sample_timestamp)
+
+good_iso_string = "2012-10-12"
+good_dt = datetime.fromisoformat(good_iso_string)
+print("good_dt is", good_dt)
+bad_iso_string = "ham sandwich"
+bad_dt = datetime.fromisoformat(bad_iso_string)
+print("good_dt is", bad_dt)

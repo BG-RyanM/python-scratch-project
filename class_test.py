@@ -33,3 +33,7 @@ simple = Simple()
 simple.set_name("MyName")
 
 print("name for simple object is", simple.name)
+
+Dumb.z = 4
+dumb2 = Dumb(1, 2)
+print("dumb2.z is", dumb2.z)

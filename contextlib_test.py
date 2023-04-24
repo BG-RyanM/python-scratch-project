@@ -3,6 +3,12 @@ from contextlib import asynccontextmanager
 from typing import Optional
 
 
+"""
+Code that demonstrates use of contextlib for creating a function that can be used with
+Python's 'async with`. Also demonstrates a helper function that waits on an asyncio Lock,
+but with a timeout. 
+"""
+
 class LockTimeoutException(Exception):
     """
     Raised if a wait for a lock times out

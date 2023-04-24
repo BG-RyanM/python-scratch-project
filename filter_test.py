@@ -1,5 +1,8 @@
 import functools
 
+"""
+Experiments with Python filter() and reduce() functions.
+"""
 
 def sum_odd_numbers(num_list):
     _num_list = num_list.copy()

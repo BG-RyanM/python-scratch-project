@@ -40,6 +40,9 @@ sub.what_am_i()
 class SimpleBase:
     def __init__(self):
         print("I am simple base")
+        
+    def special_func(self, x=1, y=2):
+        print(f"special_func() reports {x}, {y}")
 
 
 class MoreComplexChild(SimpleBase):
@@ -49,6 +52,9 @@ class MoreComplexChild(SimpleBase):
 
     def extra(self):
         print("I am extra()")
+        
+    def special_func(self, x=3, y=4):
+        super(MoreComplexChild, self).special_func(x)
 
 
 def base_maker() -> SimpleBase:
@@ -65,3 +71,6 @@ if hasattr(base, "extra"):
 child = child_maker()
 if hasattr(child, "extra"):
     child.extra()
+
+base.special_func()
+child.special_func()

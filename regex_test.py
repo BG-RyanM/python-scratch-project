@@ -84,7 +84,7 @@ match_test("ba*d", "cod")  # no
 
 print("\n==================================")
 print("+ metacharacter")
-# * matches one or more occurrences of pattern to its left
+# + matches one or more occurrences of pattern to its left
 # (in this case, the + applies to the 'a' only)
 match_test("ba+d", "bad")  # yes
 match_test("ba+d", "baaaaaaad")  # yes
@@ -136,6 +136,13 @@ findall_test(r"abc(?:def|xyz)", "abcxyz")
 findall_test(r"abc(?:def|xyz)", "abcxyz abcdef abc789")
 findall_test(r"(?:BG)[0-9]{5,5}", "BG03081")
 findall_test(r"(?:BG)[0-9]{5,5}", "BG03081BG03082")
+findall_test(r":", "There is a : here")
+findall_test(r"[0-9]{4,4}", "My year is 2023 for some event")
+findall_test(r"[0-9]{4,4}-[0-9]{1,2}-[0-9]{1,2}", "My date is 2023-1-10 for some event")
+findall_test(r"[0-9]{4,4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}(?:am|pm)?",
+             "My datetime is 2023-1-10 11:22:33am for some event")
+findall_test(r"[0-9]{4,4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}(?:am|pm)?",
+             "My datetime is 2023-1-10 00:11:05 for some event")
 
 print("\n==================================")
 print("Scratch")
@@ -157,7 +164,7 @@ sample_barcodes = [
 ]
 
 
-def extract_matches(string, pattern):
+def extract_matches(string: str, pattern: str):
     ret_strings = []
     _string = string
     while len(_string) > 0:
@@ -190,3 +197,14 @@ match_test("(ho)[me]{2,2}", "home")
 result = re.search("(ho)[me]{2,2}", "home")
 print(f"match object is", result, "functions are", dir(result))
 print("group is", result.group())
+
+# Go through these strings and replace datetime strings with something else
+sample_strings = ["My datetime is 2023-1-10 11:22:33am for some event",
+                    "My datetime is 2023-1-10 00:10:00 for some event",
+                    "My datetimes are 2023-1-10 06:17:31pm and 2023-1-10 14:24:00"]
+for sample_string in sample_strings:
+    replace_strs = extract_matches(sample_string, r"[0-9]{4,4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}(?:am|pm)?")
+    new_str = sample_string
+    for to_replace in replace_strs:
+        new_str = new_str.replace(to_replace, "XXX")
+    print(f"Found {replace_strs} for {sample_string}, new string is '{new_str}'")

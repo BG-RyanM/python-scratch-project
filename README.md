@@ -2,9 +2,22 @@
 
 Repo for toy Python programs that demonstrate some specific feature of Python.
 
-## Stuff that's here
+## Because I Keep Forgetting
 
 On my laptop, all this lives inside the devbash-1804 container, in `~/PycharmProjects/scratch-project`.
+
+### When `git pull` Freezes
+
+```
+$ git fsck && git gc --prune=now
+```
+
+Also, try this on HOST (not in container)
+```
+> sudo iptables -P FORWARD ACCEPT
+```
+
+## Stuff That's Here
 
 Script | Purpose
 ----------------------------|-----------

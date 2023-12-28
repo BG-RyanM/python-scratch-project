@@ -1,32 +1,57 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
-class MyBase(ABC):
-    def __init__(self, a=0, b=1):
-        self._a = a
-        self._b = b
-        print(f"MyBase init'd with a={a}, b={b}")
+class Animal(ABC):
+    def __init__(self):
+        print(f"Animal init'd")
+        self._is_active = False
+
+    @abstractmethod
+    def sound(self):
+        pass
 
 
-class Mixin(MyBase):
-    def __init__(self, params: dict):
-        print("Mixin constructor")
-        # Calls constructor for Other (the mixed-in class)
-        super(MyBase, self).__init__(**params)
-        # Calls constructor for MyBase
-        super().__init__(a=params["a"], b=params["b"])
+class FlyingThingMixin:
+    def __init__(self, altitude=200):
+        print(f"FlyingThing init'd")
+        self._altitude = altitude
+
+    def fly(self):
+        self._is_active = True
+        print(f"I fly at altitude {self._altitude}!")
 
 
-class Other:
-    def __init__(self, a=0, b=0, x=0, y=0):
-        self._x = x
-        self._y = y
-        print(f"Other init'd with x={x}, y={y}")
+class Cat(Animal):
+    def __init__(self):
+        super().__init__()
+        pass
+
+    def sound(self):
+        print("meow")
 
 
-class MultiClass(Mixin, Other):
+class Eagle(Animal, FlyingThingMixin):
+    def __init__(self):
+        # Calls parent class constructor, i.e. Animal
+        super(Eagle, self).__init__()
+        # Calls parent class constructor, i.e. Animal
+        super(Animal, self).__init__(altitude=300)
+        print("Eagle init'd")
+
+    def sound(self):
+        if self._is_active:
+            print("skraaaaw!")
+        else:
+            print("cheep")
+
+
+eagle = Eagle()
+print("eagle is an Animal:", isinstance(eagle, Animal))
+print("eagle is a FlyingThing:", isinstance(eagle, FlyingThingMixin))
+eagle.sound()  # expect "cheep"
+eagle.fly()
+eagle.sound()  # expect "skraaaaw!"
+try:
+    eagle.grab()
+except AttributeError:
     pass
-
-
-params = {"a": 1, "b": 2, "x": 3, "y": 4}
-multi = MultiClass(params)

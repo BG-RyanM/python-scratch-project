@@ -1,0 +1,91 @@
+// This file purposefully contains bad data. Run the application upon it
+// to see what happens when the data contains mistakes.
+// $ python3 album_rankings.py --file BadRushLists.txt
+
+# Master List: Rush
+
+1. Rush @Classic Rush
+2. Fly by Night @Classic Rush
+3. Caress of Steel @Classic Rush
+4. 2112 @Classic Rush @Peak Rush
+5. A Farewell to Kings @Classic Rush @Peak Rush
+6. Hemispheres @Classic Rush @Peak Rush
+7. Permanent Waves @Classic Rush @80s Rush @Peak Rush
+8. Moving Pictures @Classic Rush @80s Rush @Peak Rush
+9. Signals @Synthesizer Rush @80s Rush @Peak Rush
+10. Grace Under Pressure @Synthesizer Rush @80s Rush @Peak Rush
+11. Power Windows @Synthesizer Rush @80s Rush @Peak Rush
+12. Hold Your Fire @Synthesizer Rush @80s Rush
+13. Presto @Synthesizer Rush @80s Rush
+14. Roll the Bones @90s Rush
+15. Counterparts @90s Rush
+16. Test for Echo @90s Rush
+17. Vapor Trails @Rush Reborn
+18. Snakes and Arrows @Rush Reborn
+19. Clockwork Angels @Rush Reborn
+
+# Bad 1 *
+// The * marks Jason as a user of particular interest
+
+19. Clockwork Angels
+18. Vapor Trials
+17. Snakes and Arrows
+16. Presto
+15. Roll the Bones
+14. Test for Echo
+13. Counterparts
+12. Fly By Day
+11. Caress of Steel
+10. Rush
+9. Signals
+8. Grace Under Pressure
+7. Hold Your Fire
+6. Hemispheres
+5. Farewell to Kings
+4. Moving Pictures
+3. 2112
+2. Power Windows
+1. Permanent Waves
+
+# Bad 2 *
+
+19. Caress of Steel
+18. Test for Echo
+17. Vapor Trails
+16. Rush
+14. Snakes and arrows
+13. Roll the Bones
+12. Presto
+11. Clockwork Angels
+10. Fly By Night
+9. 2112
+8. Power Windows
+7. Hemispheres
+6. Hold Your Fire
+5. Permanent Waves
+4. Grace Under Pressure
+3. A Farewell to Kings
+2. Moving Pictures
+1. Signals
+
+# Bad 3 *
+
+19. Caress of Steel
+18. Vapor Trails
+17. Test for Echo
+16. Snakes and Arrows
+14. Hold Your Fire
+14. Farewell to Kings
+13. Counterparts
+12. Clockwork Angels
+11. Roll the Bones
+10. Rush
+9. 2112
+8. Presto
+7. Hemispheres
+6. Fly By Night
+5. Power Windows
+4. Moving Pictures
+3. Signals
+2. Permanent Waves
+1. Grace Under Pressure

@@ -79,3 +79,16 @@ except ValueError:
 print("BG_ZOOKEEPER_ROOT env variable is", os.environ.get("BG_ZOOKEEPER_ROOT"))
 print("DUMB_VAR env variable is", os.environ.get("DUMB_VAR"))
 print("NONEXISTENT_VAR env variable is", os.environ.get("NONEXISTENT_VAR"))
+
+if "buffoon" in ["buffoon", "fool", "imbecile"]:
+    print("buffoon is in")
+
+dumb_type_str = str(type(dumb))
+print(f"dumb type is '{str(type(dumb))}'")
+if "Dumb" in dumb_type_str:
+    print("yes, good")
+
+
+x = 7
+y = "good" if x == 7 else "bad"
+print("y is", y)

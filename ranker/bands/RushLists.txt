@@ -1,0 +1,997 @@
+# Master List: Rush
+// The master list of Rush's album, in chronological order, follows
+// Notice the "phase" tags
+// The ": Rush" part above is needed to tell the script the band name
+// The (number) parts, e.g. (4.5), contain critic ratings from AllMusic
+
+1. Rush @Classic Rush (2)
+2. Fly by Night @Classic Rush (3)
+3. Caress of Steel @Classic Rush (2)
+4. 2112 @Classic Rush @Peak Rush (4.5)
+5. A Farewell to Kings @Classic Rush @Peak Rush (4)
+6. Hemispheres @Classic Rush @Peak Rush (4)
+7. Permanent Waves @Classic Rush @80s Rush @Peak Rush (4.5)
+8. Moving Pictures @Classic Rush @80s Rush @Peak Rush (5)
+9. Signals @Synthesizer Rush @80s Rush @Peak Rush (4)
+10. Grace Under Pressure @Synthesizer Rush @80s Rush @Peak Rush (3)
+11. Power Windows @Synthesizer Rush @80s Rush @Peak Rush (3)
+12. Hold Your Fire @Synthesizer Rush @80s Rush (3)
+13. Presto @Synthesizer Rush @80s Rush (2.5)
+14. Roll the Bones @90s Rush (3)
+15. Counterparts @90s Rush (3.5)
+16. Test for Echo @90s Rush (3)
+17. Vapor Trails @Rush Reborn (3)
+18. Snakes and Arrows @Rush Reborn (4)
+19. Clockwork Angels @Rush Reborn (4)
+
+# Jason (top-right) *
+// The * marks Jason as a user of particular interest
+
+19. Clockwork Angels
+18. Vapor Trails
+17. Snakes and Arrows
+16. Presto
+15. Roll the Bones
+14. Test for Echo
+13. Counterparts
+12. Fly By Night
+11. Caress of Steel
+10. Rush
+9. Signals
+8. Grace Under Pressure
+7. Hold Your Fire
+6. Hemispheres
+5. Farewell to Kings
+4. Moving Pictures
+3. 2112
+2. Power Windows
+1. Permanent Waves
+
+# Kramzer (top-left) *
+
+19. Caress of Steel
+18. Test for Echo
+17. Vapor Trails
+16. Rush
+15. Counterparts
+14. Snakes and arrows
+13. Roll the Bones
+12. Presto
+11. Clockwork Angels
+10. Fly By Night
+9. 2112
+8. Power Windows
+7. Hemispheres
+6. Hold Your Fire
+5. Permanent Waves
+4. Grace Under Pressure
+3. A Farewell to Kings
+2. Moving Pictures
+1. Signals
+
+# Joe (bottom) *
+
+19. Caress of Steel
+18. Vapor Trails
+17. Test for Echo
+16. Snakes and Arrows
+15. Hold Your Fire
+14. Farewell to Kings
+13. Counterparts
+12. Clockwork Angels
+11. Roll the Bones
+10. Rush
+9. 2112
+8. Presto
+7. Hemispheres
+6. Fly By Night
+5. Power Windows
+4. Moving Pictures
+3. Signals
+2. Permanent Waves
+1. Grace Under Pressure
+
+# YT1
+
+1. Hemispheres (1978) - ★★★★★ (10/10)
+2. Permanent Waves (1980) - ★★★★★ (10/10)
+3. Moving Pictures (1981) - ★★★★★ (10/10)
+4. A Farewell to Kings (1977) - ★★★★★ (10/10)
+5. 2112 (1976) - ★★★★★ (10/10)
+6. Grace Under Pressure (1984) - ★★★★★ (10/10)
+7. Signals (1982) - ★★★★★ (10/10)
+8. Power Windows (1985) - ★★★★★ (9.9/10)
+9. Caress of Steel (1975) - ★★★★★ (9.5/10)
+10. Clockwork Angels (2012) - ★★★★★ (9.3/10)
+11. Counterparts (1993) - ★★★★★ (9/10)
+12. Fly by Night (1975) - ★★★★½ (8.7/10)
+13. Rush (1974) - ★★★★½ (8.7/10)
+14. Roll the Bones (1991) - ★★★★½ (8.6/10)
+15. Snakes & Arrows (2007) - ★★★★½ (8.4/10)
+16. Hold Your Fire (1987) - ★★★★½ (8.3/10)
+17. Presto (1989) - ★★★★ (7.8/10)
+18. Test for Echo (1996) - ★★★½ (6.5/10)
+19. Vapor Trails (2002) - ★★★½ (6.3/10)
+
+# YT2
+
+19. Test for Echo
+18. Vapor Trails
+17. Roll the Bones
+16. Clockwork Angels
+15. Rush
+14. Counterparts
+13. Hold Your Fire
+12. Presto
+11. Snakes and Arrows
+10. Power Windows
+9. Fly By Night
+8. Grace Under Pressure
+7. Caress of Steel
+6. 2112
+5. Signals
+4. Moving Pictures
+3. Permanent Waves
+2. Hemispheres
+1. A Farewell to Kings
+
+# YT3
+
+19) Rush
+18) Caress of Steel
+17) Vapor Trails
+16) Snakes and Arrows
+15) Test For Echo
+14) 2112 (!!!)
+13) Fly by Night
+12) Clockwork Angels
+11) Roll The Bones
+10) Counterparts
+9) A Farewell to Kings
+8) Presto
+7) Hold Your Fire
+6) Hemispheres
+5) Permanent Waves
+4) Power Windows
+3) Grace Under Pressure
+2) Signals
+1) Moving Pictures
+
+# YT4
+
+1. Fly By Night
+2. 2112
+3. Moving Pictures
+4. Permanent Waves
+5. A Farewell to Kings
+6. Grace Under Pressure
+7. Vapor Trails
+8. Roll the Bones
+9. Hemispheres
+10. Clockwork Angels
+11. Signals
+12. Snakes and Arrows
+13. Counterparts
+14. Test for Echo
+15. Power Windows
+16. Hold Your Fire
+17. Caress of Steel
+18. Presto
+19. Rush
+
+# YT5
+
+19. Presto (3)
+18. Test for Echo (3)
+17. Caress Of Steel (3)
+16. Roll The Bones (3.5)
+15. Hold Your Fire (3.5)
+14. Vapor Trails (3.5)
+13. Power Windows (4)
+12. Snakes and Arrows (4)
+11. Clockwork Angels (4)
+10. Counterparts (4)
+9. Farewell To Kings (4.5)
+8. Rush (4.5)
+7. Fly By Night (4.5)
+6. Grace Under Pressure (5)
+5. Signals (5)
+4. 2112 (5)
+3. Moving Pictures (5)
+2. Hemispheres (5)
+1. Permanent Waves (5)
+
+# YT 6
+
+1 Fly By Night
+2 Farewell to Kings
+3 Moving Pictures
+4 Permanent Waves
+5 Rush
+6 Signals
+7 Power Windows
+8 Caress of Steel
+9 2112
+10 Hemispheres
+11 Grace Under Pressure
+12 Hold Your Fire
+
+# YT 7
+
+19. Hold Your Fire
+18. Test for Echo
+17. Vapor Trails
+16. Roll the Bones
+15. Caress of Steel
+14. Snakes and Arrows
+13. Rush
+12. Presto
+11. Clockwork Angels
+10. Counterparts
+9. Power Windows
+8. A Farewell to Kings
+7. Fly By Night
+6. Signals
+5. Grace Under Pressure
+4. 2112
+3. Hemispheres
+2. Moving Pictures
+1. Permanent Waves
+
+# YT 8
+
+1) Moving Pictures
+2) Signals
+3) Grace Under Pressure
+4) Power Windows
+5) Permanent Waves
+6) Hemispheres
+7) Hold Your Fire
+8) Presto
+9) A Farewell to Kings
+10) Counterparts
+11) Roll the Bones
+12) Clockwork Angels
+13) Fly by Night
+14) 2112
+15) Test for Echo
+16) Snakes and Arrows
+17) Vapor Trails
+18) Caress of Steel
+19) Rush
+
+# YT 9
+
+1. Moving Pictures
+2. Hemispheres
+3. A Farewell to Kings
+4. 2112
+5. Permanent Waves
+6. Signals
+7. Clockwork Angels
+8. Counterparts
+9. Snakes & Arrows
+10. Vapor Trails [Remixed]
+11. Fly By Night
+12. Caress of Steel
+13. Grace Under Pressure
+14. Power Windows
+15. Hold Your Fire
+16. Presto
+17. Roll The Bones
+18. Test for Echo
+19. Rush
+
+# YT 10
+
+1. Permanent waves
+2. Moving pictures
+3. Hemispheres
+4. A Farewell to Kings
+5. Signals
+6. Fly By Night
+7. 2112
+8. Grace Under Pressure
+9. Rush
+10. Caress of steel
+11. Counterparts
+12. Power Windows
+13. Roll The Bones
+14. Snakes And Arrows
+15. Clockwork Angels
+16. Presto
+17. Test For Echo
+18. Vapor Trails
+19. Hold Your Fire
+
+# YT 11
+
+1.	2112
+2.	A Farewell to Kings
+3.	Hemispheres
+4.	Caress of Steel
+5.	Fly By Night
+6.	Moving Pictures
+7.	Signals
+8.	Permanent Waves
+9.	Rush
+10.	Grace Under Pressure
+
+# YT 12
+
+01) Moving Pictures
+02) Permanent Waves
+03 Signals
+04) 2112
+05) Hemispheres
+06) A Farewell to Kings
+07) Fly By Night
+08) Clockwork Angels
+09) Rush
+10) Power Windows
+11) Grace Under Pressure
+12) Roll the Bones
+13) Vapor Trails
+14) Counterparts
+15) Snakes & Arrows
+16) Caress of Steel
+17) Hold Your Fire
+18) Test for Echo
+19) Presto
+
+# YT 13
+
+1. Permanent Waves
+2. Moving Pictures
+3. Farewell To Kings
+4. 2112
+5. Grace Under Pressure
+6. Hemispheres
+7. Signals
+8. Rush - s/t
+9. Fly By Night
+10. Power Windows
+
+# YT 14
+
+1. Grace Under Pressure (1984)
+2. Moving Pictures (1981)
+3. 2112 (1976)
+4. A Farewell to Kings (1977)
+5. Rush (1974)
+6. Counterparts (1993)
+7. Signals (1982)
+8. Permanent Waves (1980)
+9. Hold Your Fire (1987)
+10. Presto (1989)
+11. Power Windows (1985)
+12. Fly By Night (1975)
+13. Hemispheres (1978)
+14. Roll the Bones (1991)
+15. Snakes & Arrows (2007)
+16. Clockwork Angels (2012)
+17. Caress of Steel (1975)
+18. Test for Echo (1996)
+19. Vapor Trails (2002)
+
+# YT 15
+
+1. Moving Pictures
+2. Permanent Waves
+3. Signals
+4. Power Windows(under-rated by many... masterpiece)
+5. Grace Under Pressure(one of most unique sounding records of all time)
+6. Counterparts(Maybe the best production along with Moving Pictures and Power Windows)
+7. Presto (Amazing choruses...drum sound waaaay too thin...what a shame with amazing Ludwig kit)
+8. Clockwork Angels(Would be even better with remix...will we ever get one?)
+9. Roll The Bones (Just like Presto, production way too thin/wimpy.....should we blame Rupert Hine?)
+10. Hemispheres
+11. Test For Echo(disappointed on first listen, but wow did it grow on me)
+12. Vapor Trails(even higher with remix version)
+13. Farewell To Kings
+14. Hold Your Fire (too far in the keyboard direction)
+15. Snakes and Arrows(too many folk overtones and slow tempos)
+16. Fly By Night
+17. 2112(important record for band, but always thought it is over-rated)
+18. Caress Of Steel
+19. Rush (hard to even recognize band considering what they eventually became)
+
+# YT 16
+
+1. Hemispheres
+2. A farewell to kings
+3. Permanent waves
+4. Moving pictures
+5. 2112
+6. Signals
+7. Grace under pressure
+8. Clockwork angels
+9. Fly by night
+10. Caress of steel
+11. Rush
+12. Counterparts
+13. Vapor trails
+14. Snakes and arrows
+15. Power windows
+16. Test for echo
+17. Presto
+18. Roll the bones
+19. Hold your fire
+
+# YT 17
+
+1 - Moving Pictures
+2 - Signals
+3 - 2112
+4 - Fly By Night
+5 - Permanent Waves
+6 - Hemispheres
+7 - Clockwork Angels
+8 - A Farewell To Kings
+9 - Grace Under Pressure
+10 - Roll The Bones
+11 - Counterparts
+12 - Snakes And Arrows
+13 - Rush
+14 - Power Windows
+15 - Vapor Trails
+16 - Caress Of Steel
+17 - Presto
+18 - Test For Echo
+19 - Hold Your Fire
+
+# YT 18
+
+1. 2112
+2. Moving Pictures
+3. Hemispheres
+4. Permanent Waves
+5. Grace Under Pressure
+6. Fly By Night
+7. A Farewell to Kings
+8. Signals
+9. Power Windows
+10. Clockwork Angels
+11. Rush
+12. Test for Echo
+13. Counterparts
+14. Caress of Steel
+15. Roll The Bones
+16. Snakes and Arrows
+17. Hold Your Fire
+18. Presto
+19. Vapor Trails
+
+# YT 19
+
+1. Hemispheres
+2. A Farewell To Kings
+3. 2112
+4. Signals
+5. Moving Pictures
+6. Fly by Night
+7. Caress of Steel
+8. Grace Under Pressure
+9. Power Windows
+10. Permanent Waves
+
+# YT 20
+
+19. Vapor Trails
+18. Snakes & Arrows
+17. Clockwork Angels
+16. Test For Echo
+15. Caress of Steel
+14. Hold Your Fire (Surprised I have it this low since this is my favorite era of the band)
+13. Fly By Night
+12. Rush
+11. Counterparts
+10. A Farewell to Kings
+9. Permanent Waves
+8. Hemispheres
+7. 2112
+6. Power Windows
+5. Signals
+4. Grace Under Pressure
+3. Presto
+2. Roll the Bones
+1. Moving Pictures
+
+# YT 21
+
+1. Hemispheres
+2. Moving pictures
+3. Permanent waves
+4. 2112
+5. A Farewell to kings
+6. Counterparts
+7. Clockwork angels
+8. Test for echo
+9. Signals
+10. Power windows
+11. Caress of steel
+12. Fly by night
+13. Grace under pressure
+14. Roll the bones
+15. Snakes and arrows
+16. Hold Your fire
+17. Presto
+18. Vapor Trails
+19. Rush
+
+# YT 22
+
+1. Moving Pictures (5/5)
+2. Permanent Waves (5/5)
+3. Signals (4.5/5)
+4. Hemispheres (4.5/5)
+5. Vapor Trails (4/5)
+6. Grace Under Pressure (4/5)
+7. 2112 (4/5)
+8. Power Windows (4/5)
+9. Roll the Bones (3.5/5)
+10. A Farewell to Kings (3.5/5)
+11. Rush (3.5/5)
+12. Presto (3.5/5)
+13. Clockwork Angels (3.5/5)
+14. Fly by Night (3/5)
+15. Caress of Steel (2.5/5)
+
+# YT 23
+
+1. Hemispheres (5) stars
+2. Moving Pictures (5) Stars
+3. Grace Under Pressure (5) Stars, so 1984 and love it.
+4. Signals (4.8) Stars
+5. Permanent Waves (4.5)
+6. 2112 (4.5)
+7. Power Windows (4.2)
+8. Counterparts (4)
+9.  A Farewell To Kings (4)
+10. Snakes and Arrows (4)
+11. Test For Echo (3.8)
+12. Clockwork Angels (3.8)
+13. Fly By Night (3.8)
+14. Hold Your Fire (3.8)
+15. Rush (3.5)
+16. Roll The Bones (3.5)
+17. Vapor Trails (3.2)
+18. Presto (3)
+19. Caress Of Steel (3)
+
+# YT 24
+
+1. Hemispheres
+2. Permanent Waves
+3. A Farewell to Kings
+4. Moving Pictures
+5. Grace Under Pressure
+6. 2112
+7. Hold Your Fire
+8. Fly By Night
+9. Caress of Steel
+10. Test For Echo
+11. Signals
+12. Roll the Bones
+13. Clockwork Angels
+14. Power Windows
+15. Rush
+16. Presto
+17. Counterparts
+18. Vapor Trails
+19. Snakes & Arrows
+
+# YT 25
+
+1. Moving Pictures
+2. 2112
+3. Farewell to Kings
+4. Permanent Waves
+5. Hemispheres
+6. Clockwork Angels
+7. Fly By Night
+8. Signals
+9. Grace Under Pressure
+10. Vapor Trails
+11. Roll the Bones
+12. Counterparts
+13. Power Windows
+14. Rush
+15. Presto
+16. Test for Echo
+17. Hold Your Fire
+18. Snakes and Arrows
+19. Caress of Steel
+
+# YT 26
+
+19. Vapor trails (3.5/5)
+18. Snakes and arrows (3.5/5)
+17. Caress of steel (4/5)
+16. Clockwork angels (4/5)
+15. Fly by night (rock) (4/5)
+14. Rush (rock) (4/5)
+13. Test for echo (alternative) (4/5)
+12. A farewell to kings (4.5/5)
+11. 2112 (4.5/5)
+10. Counterparts (4.5/5)
+9. Hold your fire (4.5/5)
+8. Roll the bones (4.5/5)
+7. Permanent waves (4.5/5)
+6. hemispheres (4.5/5)
+5. Presto (4.5/5)
+4. Grace under pressure (4.5/5)
+3. Power windows (5/5)
+2. Moving pictures (5/5)
+1. Signals (new wave) (5/5)
+
+# YT 27
+
+19.) Test For Echo
+18.) Rush
+17.) Vapor Trails
+16.) Caress of Steel
+15.) Snakes and Arrows
+14.) Presto
+13.) Fly By Night
+12.) Hold Your Fire
+11.) Counterparts
+10.) Roll The Bones
+9.) 2112
+8.) Power Windows
+7.) A Farewell To Kings
+6.) Clockwork Angels
+5.) Grace Under Pressure
+4.) Hemispheres
+3.) Moving Pictures
+2.) Signals
+1.) Permanent Waves
+
+# YT 28
+
+19 Test For Echo (3)
+18 Roll the Bones (3)
+17 Hold Your Fire (3)
+16 Presto (3)
+15 Snakes & Arrows (3.5)
+14 Clockwork Angels (3.5)
+13 Vapor Trails (4)
+12 Counterparts (4)
+11 Caress of Steel (4)
+10 Fly by Night (4)
+ 9 Rush (4)
+ 8 Power Windows (4)
+ 7 Grace Under Pressure (4.5)
+ 6 2112 (4.5)
+ 5 A Farewell to Kings (4.5)
+ 4 Signals (4.5)
+ 3 Hemispheres (5)
+ 2 Permanent Waves (5)
+ 1 Moving Pictures (5)
+
+# YT 29
+
+1. Hemispheres
+2. A Farewell to Kings
+3. 2112
+4. Moving Pictures
+5. Permanent Waves
+6. Power Windows
+7. Signals
+8. Fly By Night
+9. Caress of Steel
+10. Rush
+11. Counterparts
+12. Clockwork Angels
+13. Grace Under Pressure
+14. Hold Your Fire
+15. Test For Echo
+16. Snakes and Arrows
+17. Roll the Bones
+18. Presto
+19. Vapor Trails
+
+# YT 30
+
+19 Caress Of Steel
+18 Rush
+17 Fly By Night
+16 Counterparts
+15 Snakes & Arrows
+14 Test For Echo
+13 Roll The Bones
+12 Clockwork Angels
+11 A Farewell To Kings
+10 Hemispheres
+9 Grace Under Pressure
+8 Vapor Trails
+7 Presto
+6 2112
+5 Permanent Waves
+4 Signals
+3 Moving Pictures
+2 Power Windows
+1 Hold Your Fire
+
+# YT 31
+
+1. Moving Pictures (1981) (5/5)
+2. Permanent Waves (1980) (4.5/5)
+3. 2112 (1976) (4/5)
+4. Signals (1982) (4/5)
+5. Hemispheres (1978) (4/5)
+6. A Farewell To Kings (1977) (3.5/5)
+7. Grace Under Pressure (1984) (3.5/5)
+8. Roll The Bones (1991) (3.5/5)
+9. Clockwork Angels (2012) (3/5)
+10. Rush (1974) (3/5)
+11. Counterparts (1993) (3/5)
+12. Presto (1989) (3/5)
+13. Hold Your Fire (1987) (2.5/5)
+14. Power Windows (1985) (2.5/5)
+15. Caress Of Steel (1975) (2.5/5)
+16. Vapor Trails (2002) (2.5/5)
+17. Fly By Night (1975) (2/5)
+18. Snakes & Arrows (2007) (2/5)
+19. Test For Echo (1996) (2/5)
+
+# YT 32
+
+19.   Vapor Trails
+18.   Test For Echo
+17.   Counterparts
+16.   Rush
+15.   Caress Of Steel
+14.   Hold Your Fire
+13.   Snakes & Arrows
+12.   Roll The Bones
+11.   Grace Under Pressure
+10.   Presto
+9.     Clockwork Angels
+8.     Fly By Night
+7.     Power Windows
+6.     2112
+5.     A Farewell To Kings
+4.     Signals
+3.     Permanent Waves
+2.     Hemispheres
+1.     Moving Pictures
+
+# YT 33
+
+1. Hemispheres (10/10)
+2. 2112 (10/10)
+3. Moving Pictures (10/10)
+4. Signals (10/10)
+5. A Farewell To Kings (9.5/10)
+6. Permanent Waves (9.5/10)
+7. Fly By Night (9/10)
+8. Power Windows (9/10)
+9. Clockwork Angels (8.5/10)
+10 . Rush (8/10)
+11. Presto (8/10)
+12. Caress Of Steel (7.5/10)
+13. Grace Under Pressure (7.5/10)
+14. Hold Your Fire (7.5/10)
+15. Roll the Bones (7.5/10)
+16. Counterparts (7/10)
+17. Vapor Trails (7/10)
+18. Snakes & Arrows (6.5/10)
+19. Test For Echo (6.5/10)
+
+# YT 34
+
+19. Vapor Trails
+18. Snakes and Arrows - too long, a slog at times. Go Alex!
+17. Caress of Steel - good try, don't give up!
+16. Roll The Bones - After first two songs, goes off cliff for me. I kind of lost them at this point . . .
+15. Counterparts - don't go back to it much.
+14. Rush - Yeah - whooaaa - yeah!
+13. Test For Echo
+12. Clockwork Angels
+11. 2112 - I think the first Cd I ever had. For an "impact on me as a youth" score this one is in my top 3 Rush.
+10. Fly By Night - Let it rip.
+9. Farewell To Kings - "Xanadu"  - a peak up to that point.
+8. Presto - Hit and miss but love the best moments. I think Neil's lyrics were great.
+7. Hold Your Fire. - Is it more consistent than Presto? Production is muffled/struggling.
+6. Permanent Waves. Zeppelin about to die, the Who are  almost toast   - who can move rock forward? Yep...
+5. Grace Under Pressure. Stunning. On any given day could be in my top 3.
+4. Hemispheres. Outrageously compelling - one the best hard rock albums ever.
+3. Power Windows. A masterpiece. Never get tired of it.  "We'll take this current trendy production style and blow you away with it."
+2. Signals. Would like to push it lower -- just won't budge. "Glad you enjoyed it...."
+1. Moving Pictures. Bought it on vinyl start of soph. year in high school. As a result, I can be 16 forever. Thank you Rush!
+
+# YT 35
+
+19 Presto (5.2/10)
+18 Hold Your Fire (5.7/10)
+17 Roll The Bones (6.1/10)
+16 Vapor Trails (6.4/10)
+15 Caress Of Steel (6.7/10)
+14 Grace Under Pressure (7.1/10)
+13 Rush (7.3/10)
+12 Test For Echo (7.5/10)
+11 Signals (7.7/10)
+10 Power Windows (8.0/10)
+9 Counterparts (8.1/10)
+8 Snakes & Arrows (8.4/10)
+7 Fly By Night (8.5/10)
+6 Clockwork Angels (8.7/10)
+5 Moving Pictures (9.0/10)
+4 2112 (9.2/10)
+3 A Farewell To Kings (9.4/10)
+2 Permanent Waves (9.8/10)
+1 Hemispheres (10/10)
+
+# Me
+
+19. Caress of Steel (2.5)
+18. Fly By Night (2.5)
+17. Snakes and Arrows: a few really good songs, others lack that Rush energy (3)
+16. Test for Echo: I actually like this one (3)
+15. Rush (3.5)
+14. Presto (3.5)
+13. Roll the Bones (3.5)
+12. Counterparts (3.5)
+11. Hold Your Fire (3.5)
+10. Vapor Trails (3.5)
+9. Hemispheres (4)
+8. A Farewell to Kings (4)
+7. 2112 (4)
+6. Clockwork Angels (4)
+5. Signals (4.5)
+4. Grace Under Pressure (4.5)
+3. Power Windows (4.5)
+2. Permanent Waves (5)
+1. Moving Pictures (5)
+
+# YT 36
+
+1. Signals (1982) = (5/5) stars
+2. Moving Pictures (1981) = (5/5) stars
+3. Power Windows (1985) = (4.5/5) stars
+4. Hold Your Fire (1987) = (4.5/5) stars
+5. Grace Under Pressure (1984) = (4.5/5) stars
+6. Permanent Waves (1980) = (4/5) stars
+7. Hemispheres (1978) = (4/5) stars
+8. Presto (1989) = (4/5) stars
+9. Counterparts (1993) = (4/5) stars
+10. 2112 (1976) = (4/5) stars
+11. Fly by Night (1975) = (4/5) stars
+12. Roll the Bones (1991) = (4/5) stars
+13. Clockwork Angels (2012) = (3.5/5) stars
+14. Rush (1974) = (3/5) stars
+15. A Farewell to Kings (1977) = (3/5) stars
+16. Snakes and Arrows (2007) = (3/5) stars
+17. Test for Echo (1996) = (3/5) stars
+18. Vapor Trails (2002) = Original: 2 of 5 stars, Remixed: (3/5) stars
+19. Caress of Steel (1975) = (2/5) stars
+
+# YT 37
+
+19) Hold Your Fire (2.5 stars)
+18) Test for Echo (3.25 stars)
+17) Presto (3.25 stars)
+16) Power Windows (3.5 stars)
+15) Roll the Bones (3.5 stars)
+14) Vapor Trails (3.75 stars)
+13) A Farewell to Kings (3.75 stars)
+12) Counterparts (4 stars)
+11) Rush (4 stars)
+10) Fly By Night (4 stars)
+09) Snakes & Arrows (4.25 stars)
+08) Caress of Steel (4.25 stars)
+07) Permanent Waves (4.25 stars)
+06) Hemispheres (4.25 stars)
+05) Grace Under Pressure (5 stars)
+04) Clockwork Angels (5 stars)
+03) 2112 (5 stars)
+02) Moving Pictures (5 stars)
+01) Signals (5 stars)
+
+# YT 38
+
+1. 2112
+2. Hemispheres
+3. Fly By Night
+4. Moving Pictures
+5. Signals
+6. Grace Under Pressure
+7. Counterparts
+8. A Farewell to Kings
+9. Permanent Waves
+10. Clockwork Angels
+11. Snakes & Arrows
+12. Power Windows
+13. Hold Your Fire
+14. Rush
+15. Test for Echo
+16. Vapor Trails
+17. Caress of Steel
+18. Roll the Bones
+19. Presto
+
+# YT 39
+
+1. 2112
+2. Permanent Waves
+3.  Moving Pictures
+4. Rush
+5. A Farewell to Kings
+6. Fly By Night
+7. Clockwork Angels
+8. Signals
+9. Power Windows
+10. Hold Your Fire
+11. Hemispheres
+12. Roll to the Bones
+13. Presto
+14. Counterparts
+15. Grace Under Pressure
+16. Snakes and Arrows
+17. Caress of Steel
+18. Vapor Trails
+19. Test for Echo
+
+# YT 40
+
+16 Hold Your Fire (6/10)
+15 Power Windows (6.5/10) the only album I've heard yet that sounds dated despite their amazing ability to sound really big still. I enjoyed it though.
+14 Vapor Trails (7/10)
+13 Rush (8/10)
+12 Fly By Night (8/10)
+11 Clockwork Angels (8/10)
+10 Signals (8/10)
+9 Counterparts (8.5/10)
+8 A Farewell to Kings (9/10)
+7 Permanent Waves (9/10)
+6 Hemispheres (9.5/10)
+5 2112 (10/10)
+4 Caress of Steel (10/10) surprised?
+3 Grace Under Pressure (10/10)
+2 Moving Pictures (10/10)
+1 Snakes and Arrows (10/10)
+
+# YT 41
+
+19. Test For Echo (2.5 stars) biggest highlight: Driven 6.7/10
+18. Presto (2.5 stars) biggest highlight: Show don’t Tell 8.5/10
+17. Roll The Bones (2.5 stars) biggest highlight: Ghost of a Chance 6.8/10
+16. Rush (3 stars) biggest highlight: Working Man 7/10
+15. Counterparts (3 stars) biggest highlight: Leave That Thing Alone 7.5/10
+14. Snakes and Arrows (3 stars) biggest highlight: Far Cry 7.2/10
+13. Clockwork Angels (3 stars) biggest highlight: Clockwork Angels 7.4/10
+12. Hold Your Fire (3.5 stars) biggest highlight: Time Stand Still 8/10
+11. Vapor Trails (4 stars) biggest highlight: Earthshine 9/10
+10. Fly By Night (4 stars) biggest highlight: In The End 8.8/10
+9. Grace Under Pressure (4 stars) biggest highlight: Red Sector A 8.2/10
+8. Power Windows (4 stars) biggest highlight: Mystic Rhythms 9.5/10
+7. 2112 (4.5 stars) biggest highlight: 2112 9.7/10
+6. Caress Of Steel (4.5 stars) biggest highlight: The Necromancer 9.6/10
+5. Moving Pictures (5 stars, I’m gonna get some hate for this) biggest highlight: Red Barchetta, 9.7/10
+4. A Farewell To Kings (5 stars) biggest highlight: A Farewell to Kings and Cygnus X-1, 9.7/10
+3. Permanent Waves (5 stars) biggest highlight: Natural Science 9.9/10
+2. Hemisphere (5 stars) biggest highlight: Cygnus X-1 book 2: Hemispheres 10/10 (their best song and maybe the best song ever made)
+1. Signals (5 stars) biggest highlight: EVERYTHING
+
+# YT Last
+
+19 Test for Echo
+18 Roll the bones
+17 Snakes and Arrows
+16 Clockwork Angels
+15 Rush the debut
+14 Caress of Steel
+13 Vapor Trails
+12 Presto
+11 Counterparts
+10 Hold your Fire
+9 Hemispheres
+8 Grace under Pressure
+7 Power Windows
+6 Fly by Night
+5 Signals
+4 A Farewell to Kings
+3 2112
+2 Moving Pictures
+1 Permanent Waves

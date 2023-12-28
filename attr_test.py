@@ -91,6 +91,13 @@ class ConveyorQueueItem:
         else:
             raise StopIteration
 
+    @staticmethod
+    def get_class_member():
+        try:
+            return ConveyorQueueItem.class_member
+        except AttributeError:
+            return None
+
 
 print("-----------------------------------")
 cqi = ConveyorQueueItem("1234", 1, False, "")
@@ -108,3 +115,14 @@ print("item from dict is", attr.asdict(cqi_from_dict))
 the_dict2 = dict(cqi)
 print("dict by other method is", the_dict2)
 print("dict to dict is", dict(the_dict2))
+
+print(
+    "ConveyorQueueItem.class_member (first time) is",
+    ConveyorQueueItem.get_class_member(),
+)
+
+ConveyorQueueItem.class_member = "thing"
+print(
+    "ConveyorQueueItem.class_member (second time) is",
+    ConveyorQueueItem.get_class_member(),
+)

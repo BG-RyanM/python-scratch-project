@@ -74,6 +74,21 @@ print("sample_timestamp is", sample_timestamp)
 good_iso_string = "2012-10-12"
 good_dt = datetime.fromisoformat(good_iso_string)
 print("good_dt is", good_dt)
-bad_iso_string = "ham sandwich"
-bad_dt = datetime.fromisoformat(bad_iso_string)
-print("good_dt is", bad_dt)
+try:
+    bad_iso_string = "ham sandwich"
+    bad_dt = datetime.fromisoformat(bad_iso_string)
+except ValueError:
+    print("ham sandwich failed as expected")
+
+utc_now = datetime.utcnow()
+iso_str = utc_now.isoformat()
+print("iso str is", iso_str)
+
+z_time_str = iso_str + "+00:00"
+z_dt = datetime.fromisoformat(z_time_str)
+print("z_dt is", z_dt)
+
+now_time = datetime.utcnow()
+earlier_time = now_time - timedelta(seconds=5)
+if now_time > earlier_time:
+    print(f"{now_time} > {earlier_time}, as expected")

@@ -23,19 +23,6 @@ print("Individual Animal values")
 for a in PetOwner.Animal:
     print(a)
 problem_map: Dict[PetOwner.Animal, str] = {}
-problem_map[PetOwner.Animal.CAT] = "worms"
-problem_map[PetOwner.Animal.DOG] = "fleas"
-for k, v in problem_map.items():
-    print(f"problem for {k} is {v}")
-
-# Bird value is 3
-print("Bird value is", PetOwner.Animal["BIRD"].value)
-
-dumb_string = "dumb\n123\nxyz"
-dumb_parts = dumb_string.split("\n")
-if type(dumb_string) == str:
-    print("dumb parts ", dumb_parts)
-# dumb parts  ['dumb', '123', 'xyz']
 
 
 class Fruit(Enum):
@@ -96,7 +83,9 @@ class MoveStatus(IntEnum):
 move_status = MoveStatus(MoveStatus.WALKING)
 print(f"move_status regular is {move_status}, as str is {str(move_status)}")
 for ms in MoveStatus:
-    print(f"move_status is {ms}")
+    print(f"move_status is {ms}, string name is {str(ms)}")
+
+print("Reverse lookup in MoveStatus:", MoveStatus(2))
 
 
 class StackLightState(Enum):
@@ -161,3 +150,7 @@ class OrderState(Enum):
 
 my_order_state = OrderState.ACTIVE
 print("my_order_state =", str(my_order_state))
+
+print("All order states:")
+for os in OrderState:
+    print(f"state {os.value}: {os.name}")

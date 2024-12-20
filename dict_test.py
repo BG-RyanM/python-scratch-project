@@ -35,3 +35,5 @@ for key, val in letters_map.items():
         letters_map[key] = val - 1
 
 print("new letters_map is", letters_map)
+
+non_existent = animal_map["horse"]

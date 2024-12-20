@@ -49,5 +49,5 @@ class MyClassB:
 my_a = MyClassA()
 my_b = MyClassB()
 
-my_b.set_callback(partial(MyClassA.handler, my_a))
+my_b.set_callback(my_a.handler)
 my_b.run_callback(6)

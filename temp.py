@@ -92,3 +92,6 @@ if "Dumb" in dumb_type_str:
 x = 7
 y = "good" if x == 7 else "bad"
 print("y is", y)
+
+if "dope" not in []:
+    print("'dope' is not there, as expected")
